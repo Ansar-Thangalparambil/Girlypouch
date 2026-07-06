@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Build Your Pouch | GirlyPouch</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pouch-card-glow {
+            box-shadow: 0 10px 30px rgba(45, 55, 72, 0.05);
+        }
+        .step-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf9f6; /* Surface Color */
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#2f312f",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#60684c",
+                        "surface-variant": "#e3e2e0",
+                        "primary-fixed": "#ffdad3",
+                        "surface-dim": "#dbdad7",
+                        "tertiary": "#834f60",
+                        "surface-container-high": "#e9e8e5",
+                        "tertiary-container": "#be8295",
+                        "on-tertiary-fixed-variant": "#683849",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1a1c1a",
+                        "outline-variant": "#ddc0ba",
+                        "on-primary-fixed": "#3e0500",
+                        "primary-fixed-dim": "#ffb4a5",
+                        "on-tertiary-container": "#481d2e",
+                        "on-primary-fixed-variant": "#802918",
+                        "primary-container": "#e2725b",
+                        "surface-tint": "#9f402d",
+                        "primary": "#9f402d",
+                        "on-background": "#1a1c1a",
+                        "tertiary-fixed": "#ffd9e3",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#89726d",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#faf9f6",
+                        "on-secondary-fixed": "#171e09",
+                        "inverse-primary": "#ffb4a5",
+                        "surface": "#faf9f6",
+                        "on-primary-container": "#5a0d02",
+                        "background": "#faf9f6",
+                        "surface-container-low": "#f4f3f1",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#56423e",
+                        "on-secondary-fixed-variant": "#424a31",
+                        "tertiary-fixed-dim": "#f6b4c9",
+                        "surface-container-highest": "#e3e2e0",
+                        "surface-container": "#efeeeb",
+                        "secondary-fixed-dim": "#c2caaa",
+                        "on-tertiary-fixed": "#340d1d",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#dee6c4",
+                        "secondary-container": "#dee6c4",
+                        "error-container": "#ffdad6",
+                        "secondary": "#5a6147",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f2f1ee"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "12px",
+                        "xl": "16px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "md": "24px",
+                        "sm": "12px",
+                        "xl": "80px",
+                        "gutter": "16px",
+                        "margin-desktop": "64px",
+                        "xs": "4px",
+                        "lg": "48px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-base max-w-screen-2xl mx-auto bg-surface shadow-sm">
+<div class="font-headline-md text-headline-md font-bold text-primary">GirlyPouch</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary" href="#">Shop</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-opacity duration-200" href="#">About</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-opacity duration-200" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-opacity duration-200" href="#">B2B</a>
+</div>
+<button class="bg-primary text-on-primary px-md py-sm rounded-lg font-label-md transition-all duration-300 hover:opacity-80">
+            Get Started
+        </button>
+</nav>
+<!-- Main Content Grid -->
+<main class="max-w-screen-2xl mx-auto pt-xl px-margin-desktop pb-xl grid grid-cols-1 md:grid-cols-12 gap-lg mt-12">
+<!-- Left Column: Sticky Summary Card -->
+<aside class="md:col-span-4 lg:col-span-3">
+<div class="sticky top-28">
+<div class="bg-surface-container-lowest rounded-xl p-md border-2 border-primary pouch-card-glow transition-all duration-300">
+<div class="flex items-center gap-base mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="shopping_bag">shopping_bag</span>
+<h2 class="font-headline-md text-headline-md">Your Pouch</h2>
+</div>
+<!-- Progress Section -->
+<div class="mb-lg">
+<div class="flex justify-between items-end mb-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Capacity</span>
+<span class="font-headline-md text-headline-md text-primary" id="pouch-count">0/10</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary transition-all duration-500 ease-out" id="progress-bar" style="width: 0%"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-sm">Add 10 pads for your custom monthly box.</p>
+</div>
+<!-- Item List Container -->
+<div class="space-y-sm min-h-[120px] mb-lg" id="pouch-items">
+<!-- Empty State -->
+<div class="flex flex-col items-center justify-center py-base text-center border-2 border-dashed border-outline-variant rounded-lg" id="empty-pouch-text">
+<span class="material-symbols-outlined text-outline-variant text-4xl" data-icon="add_circle">add_circle</span>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Choose your first pad</p>
+</div>
+</div>
+<!-- Price Summary -->
+<div class="border-t border-surface-variant pt-md">
+<div class="flex justify-between items-center mb-base">
+<span class="font-body-md text-body-md text-on-surface-variant">Subscription Total</span>
+<span class="font-headline-md text-headline-md" id="total-price">$0.00</span>
+</div>
+<p class="font-label-sm text-label-sm text-secondary-fixed-dim bg-secondary/10 p-xs rounded text-center">Free shipping included</p>
+</div>
+</div>
+<!-- Specialized Pouch Badge -->
+<div class="mt-md bg-tertiary-container/10 p-md rounded-xl border border-tertiary/20 flex items-center gap-md">
+<div class="bg-surface-container-lowest p-sm rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-tertiary" data-icon="featured_seasonal_and_gifts">featured_seasonal_and_gifts</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-tertiary-container">The Velvet Case</h4>
+<p class="font-label-sm text-label-sm text-on-tertiary-fixed-variant">Included in your first month</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Column: Product Selector -->
+<section class="md:col-span-8 lg:col-span-9 space-y-md">
+<header class="mb-lg">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-base">Tailor Your Cycle</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Mix and match premium, biodegradable protection designed for every move of your week. Precision-engineered for high-end wellness.</p>
+</header>
+<!-- Product Cards -->
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-md">
+<!-- Gym Pad -->
+<div class="product-card bg-surface-container-lowest rounded-xl p-0 overflow-hidden flex flex-col pouch-card-glow border border-surface-variant group transition-all duration-300 hover:-translate-y-1">
+<div class="h-48 relative overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A macro photograph of high-tech, ultra-thin sanitary pad material focusing on the breathable micro-perforations. The lighting is soft and clinical, using a palette of warm creams and whites consistent with a luxury wellness brand. The focus is sharp and professional, highlighting a textile that looks like high-performance athletic fabric." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBP-qaHqXiCgz2nKBoXQrgarbi1w7XtfBD0pGiDv6ukTQqYohqIfNPmpJzJLQjtgYY22ABworPEg95M7-Yvczm_oLv5DQVQ1skKTzlzB_TZe0FD6jGW0tT4-LDJlHrDtj_if_f42wLsCzTdiyfE-pSbH09IJ8bQ1R-DRN_wQp8i8xHSkQcpR2Hu2yTbepBK-c0wjHOYX7L4rfK03LBqQrcMVcIeLUyhE1PPQNynE9dpEyYvmZKEjPvFZvpjCq3pBfIEsf7l3WM')"></div>
+<span class="absolute top-sm left-sm bg-secondary text-on-secondary px-base py-xs rounded-full font-label-sm text-[10px] uppercase tracking-widest">Activewear</span>
+</div>
+<div class="p-md flex-grow">
+<div class="flex justify-between items-start mb-xs">
+<h3 class="font-headline-md text-headline-md">Gym Pad</h3>
+<span class="font-body-md text-body-md text-primary font-bold">$2.50</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Ultra-thin, flexible wings designed for high-intensity movement and zero-feel protection.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Absorbency: Light</span>
+<div class="flex items-center gap-base bg-surface-container-low rounded-full px-sm py-xs">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-lowest text-primary shadow-sm hover:bg-primary hover:text-on-primary transition-colors" onclick="updateQty('gym', -1)">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="font-label-md text-label-md w-6 text-center" id="qty-gym">0</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-lowest text-primary shadow-sm hover:bg-primary hover:text-on-primary transition-colors" onclick="updateQty('gym', 1)">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Night Pad -->
+<div class="product-card bg-surface-container-lowest rounded-xl p-0 overflow-hidden flex flex-col pouch-card-glow border border-surface-variant group transition-all duration-300 hover:-translate-y-1">
+<div class="h-48 relative overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A serene, low-light photograph of a soft, cotton-textured sanitary pad with an elongated silhouette for night use. The scene is styled with calming, warm earth tones, featuring soft shadows and an atmosphere of luxury comfort. The visual emphasizes the protective shape and premium organic materials in a minimalist, fintech-inspired aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTvY85VLmHMwxgSCafsvU5kQ04zyfuxOQqk8JPauhLzw0-hLRekutRmHGOHrY7bWKAGCtATruPFHiEx4voh8SxGr7fNBFoCU4hhAYi_XSebq1tLVkVUBZp7_QpZI0Ppt8vqWaKKz3SB0pQ7xf5vsBDTvrxOjBgQa45kgWnN15eB1xAQ8tnb2fwkxN4osgQGEt-ABrYOYRDEO8Iq45iC95VEW2qwxm3wf3dWg1w5uLDUZ6mK9Xn1lQZFXRdfl0I7V6tlBHSlV4')"></div>
+<span class="absolute top-sm left-sm bg-tertiary text-on-tertiary px-base py-xs rounded-full font-label-sm text-[10px] uppercase tracking-widest">Overnight</span>
+</div>
+<div class="p-md flex-grow">
+<div class="flex justify-between items-start mb-xs">
+<h3 class="font-headline-md text-headline-md">Night Pad</h3>
+<span class="font-body-md text-body-md text-primary font-bold">$3.20</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Maximum coverage and 12-hour leak-lock technology for restorative, worry-free sleep.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Absorbency: Max</span>
+<div class="flex items-center gap-base bg-surface-container-low rounded-full px-sm py-xs">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-lowest text-primary shadow-sm hover:bg-primary hover:text-on-primary transition-colors" onclick="updateQty('night', -1)">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="font-label-md text-label-md w-6 text-center" id="qty-night">0</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-lowest text-primary shadow-sm hover:bg-primary hover:text-on-primary transition-colors" onclick="updateQty('night', 1)">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Regular Pad -->
+<div class="product-card bg-surface-container-lowest rounded-xl p-0 overflow-hidden flex flex-col pouch-card-glow border border-surface-variant group transition-all duration-300 hover:-translate-y-1">
+<div class="h-48 relative overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A clean, minimalist flat-lay of several organic cotton sanitary pads arranged neatly on a warm cream surface. The image uses a high-key lighting setup that evokes a feeling of freshness and clinical precision. The soft terracotta and charcoal accents of the brand's palette are subtly present in the props around the pads." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAp8n_46cv63MpBULfaEPc55IXghLTp0-O0mtqZrxtXKrtJXfSPnUeSfzYPdpmqzEpaDiJxejG5Vk1CA6yttJ1hdzxIn2ufqXDjGO-5rnssxt9z4mHhP_DWjvRGJ2GrqIJqGQ_qzD1cNhnipB5zS5_87a_3O-vHSugF0KmdRJYOfglIrwL4vcGErb9Xceeg6-7ttdjPrqHkA5_J3rFIMQQgIkpa6vXxSQoShT7Hh9CeS1Nxy76lOtsK2J3syaQz92Ro3Skfh5s')"></div>
+<span class="absolute top-sm left-sm bg-outline text-on-primary px-base py-xs rounded-full font-label-sm text-[10px] uppercase tracking-widest">Essential</span>
+</div>
+<div class="p-md flex-grow">
+<div class="flex justify-between items-start mb-xs">
+<h3 class="font-headline-md text-headline-md">Regular Pad</h3>
+<span class="font-body-md text-body-md text-primary font-bold">$2.80</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Classic, breathable comfort made with 100% organic cotton for reliable everyday protection.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Absorbency: Medium</span>
+<div class="flex items-center gap-base bg-surface-container-low rounded-full px-sm py-xs">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-lowest text-primary shadow-sm hover:bg-primary hover:text-on-primary transition-colors" onclick="updateQty('regular', -1)">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="font-label-md text-label-md w-6 text-center" id="qty-regular">0</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-lowest text-primary shadow-sm hover:bg-primary hover:text-on-primary transition-colors" onclick="updateQty('regular', 1)">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Checkout Summary Block -->
+<div class="bg-surface-container rounded-xl p-lg flex flex-col md:flex-row justify-between items-center gap-md border border-outline-variant shadow-sm mt-xl">
+<div class="text-center md:text-left">
+<h3 class="font-headline-md text-headline-md">Ready to Subscribe?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Your custom pouch will ship every 28 days. Modify or cancel anytime.</p>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-md w-full md:w-auto">
+<div class="text-center md:text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Monthly total</p>
+<p class="font-display-lg text-display-lg text-primary" id="footer-total">$0.00</p>
+</div>
+<button class="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-md transition-all duration-300 hover:opacity-90 shadow-lg hover:shadow-xl active:scale-95 w-full sm:w-auto">
+                        Checkout Now
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-lg flex flex-col md:flex-row justify-between items-center gap-base bg-surface-container-lowest mt-xl border-t border-surface-variant">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">GirlyPouch</div>
+<p class="font-label-sm text-label-sm text-on-secondary-container">© 2024 GirlyPouch. All rights reserved.</p>
+</div>
+<div class="flex gap-md">
+<a class="font-label-sm text-label-sm text-on-secondary-container hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-secondary-container hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-secondary-container hover:text-primary transition-colors" href="#">Contact Us</a>
+<a class="font-label-sm text-label-sm text-on-secondary-container hover:text-primary transition-colors" href="#">Wholesale</a>
+</div>
+</footer>
+<script>
+        const products = {
+            gym: { name: "Gym Pad", price: 2.50, qty: 0, icon: "exercise" },
+            night: { name: "Night Pad", price: 3.20, qty: 0, icon: "bedtime" },
+            regular: { name: "Regular Pad", price: 2.80, qty: 0, icon: "check_circle" }
+        };
+
+        const MAX_CAPACITY = 10;
+
+        function updateQty(id, delta) {
+            const product = products[id];
+            const totalQty = Object.values(products).reduce((acc, p) => acc + p.qty, 0);
+
+            if (delta > 0 && totalQty >= MAX_CAPACITY) return;
+            if (delta < 0 && product.qty <= 0) return;
+
+            product.qty += delta;
+            
+            // UI Updates
+            document.getElementById(`qty-${id}`).innerText = product.qty;
+            renderPouch();
+        }
+
+        function renderPouch() {
+            const container = document.getElementById('pouch-items');
+            const countDisplay = document.getElementById('pouch-count');
+            const progressBar = document.getElementById('progress-bar');
+            const emptyState = document.getElementById('empty-pouch-text');
+            const priceDisplay = document.getElementById('total-price');
+            const footerTotal = document.getElementById('footer-total');
+
+            let totalQty = 0;
+            let totalPrice = 0;
+            
+            container.innerHTML = '';
+            
+            Object.keys(products).forEach(id => {
+                const p = products[id];
+                if (p.qty > 0) {
+                    totalQty += p.qty;
+                    totalPrice += p.qty * p.price;
+
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'flex items-center justify-between p-sm bg-surface-container rounded-lg border border-surface-variant step-transition';
+                    itemDiv.innerHTML = `
+                        <div class="flex items-center gap-base">
+                            <span class="material-symbols-outlined text-primary text-sm" data-icon="${p.icon}">${p.icon}</span>
+                            <span class="font-label-md text-label-md">${p.name}</span>
+                        </div>
+                        <span class="font-label-md text-label-md bg-primary/10 text-primary px-sm rounded-full">x${p.qty}</span>
+                    `;
+                    container.appendChild(itemDiv);
+                }
+            });
+
+            if (totalQty === 0) {
+                container.appendChild(emptyState);
+            }
+
+            // Calculations
+            const progress = (totalQty / MAX_CAPACITY) * 100;
+            progressBar.style.width = `${progress}%`;
+            countDisplay.innerText = `${totalQty}/${MAX_CAPACITY}`;
+            priceDisplay.innerText = `$${totalPrice.toFixed(2)}`;
+            footerTotal.innerText = `$${totalPrice.toFixed(2)}`;
+
+            // Visual feedback on progress bar if full
+            if (totalQty === MAX_CAPACITY) {
+                progressBar.classList.add('bg-secondary');
+                progressBar.classList.remove('bg-primary');
+            } else {
+                progressBar.classList.add('bg-primary');
+                progressBar.classList.remove('bg-secondary');
+            }
+        }
+    </script>
+</body></html>

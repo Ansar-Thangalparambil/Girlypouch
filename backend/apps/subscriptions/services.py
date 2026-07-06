@@ -51,7 +51,22 @@ def stripe_webhook_view(request):
     event_type = event.get('type')
     logger.info("Received Stripe webhook event: %s", event_type)
 
-    if event_type == 'invoice.payment_succeeded':
+    if event_type == 'checkout.session.completed':
+        session = event.get('data', {}).get('object', {})
+        client_reference_id = session.get('client_reference_id')
+        stripe_subscription_id = session.get('subscription')
+        if client_reference_id and stripe_subscription_id:
+            try:
+                Subscription.objects.filter(id=client_reference_id).update(
+                    stripe_subscription_id=stripe_subscription_id,
+                    status='active'
+                )
+                logger.info("Successfully linked Stripe subscription %s with local subscription %s", stripe_subscription_id, client_reference_id)
+            except Exception as e:
+                logger.error("Error linking subscription: %s", str(e))
+                return HttpResponse("Internal error linking subscription", status=500)
+
+    elif event_type == 'invoice.payment_succeeded':
         invoice_obj = event.get('data', {}).get('object', {})
         stripe_subscription_id = invoice_obj.get('subscription')
         
@@ -80,10 +95,32 @@ def fulfill_subscription_payment(stripe_subscription_id: str, stripe_invoice: di
     """
     logger.info("Starting order fulfillment for Stripe subscription: %s", stripe_subscription_id)
 
-    # 1. Fetch subscription and prefetch customized components
-    subscription = Subscription.objects.select_related('user', 'kit_product').prefetch_related('items__pad_component').get(
-        stripe_subscription_id=stripe_subscription_id
-    )
+    # 1. Fetch subscription and prefetch customized components (with failsafe fallback for race conditions)
+    try:
+        subscription = Subscription.objects.select_related('user', 'kit_product').prefetch_related('items__pad_component').get(
+            stripe_subscription_id=stripe_subscription_id
+        )
+    except Subscription.DoesNotExist:
+        logger.warning("Subscription with stripe_id %s not found. Attempting Stripe API retrieval...", stripe_subscription_id)
+        # Fetch actual Stripe Subscription details to read local ID from metadata
+        stripe.api_key = getattr(settings, 'STRIPE_SECRET_KEY', 'sk_test_dummy')
+        try:
+            stripe_sub = stripe.Subscription.retrieve(stripe_subscription_id)
+            local_sub_id = stripe_sub.metadata.get('subscription_id')
+            if local_sub_id:
+                Subscription.objects.filter(id=local_sub_id).update(
+                    stripe_subscription_id=stripe_subscription_id,
+                    status='active'
+                )
+                subscription = Subscription.objects.select_related('user', 'kit_product').prefetch_related('items__pad_component').get(
+                    id=local_sub_id
+                )
+                logger.info("Failsafe linked subscription: local_id=%s, stripe_id=%s", local_sub_id, stripe_subscription_id)
+            else:
+                raise Subscription.DoesNotExist()
+        except Exception as stripe_err:
+            logger.error("Failed failsafe subscription retrieval: %s", str(stripe_err))
+            raise Subscription.DoesNotExist()
 
     # Extract invoice billing information
     amount_paid_cents = stripe_invoice.get('amount_paid', 0)

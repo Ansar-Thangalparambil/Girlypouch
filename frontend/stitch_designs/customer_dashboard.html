@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GirlyPouch | Customer Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#2f312f",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#60684c",
+                        "surface-variant": "#e3e2e0",
+                        "primary-fixed": "#ffdad3",
+                        "surface-dim": "#dbdad7",
+                        "tertiary": "#834f60",
+                        "surface-container-high": "#e9e8e5",
+                        "tertiary-container": "#be8295",
+                        "on-tertiary-fixed-variant": "#683849",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1a1c1a",
+                        "outline-variant": "#ddc0ba",
+                        "on-primary-fixed": "#3e0500",
+                        "primary-fixed-dim": "#ffb4a5",
+                        "on-tertiary-container": "#481d2e",
+                        "on-primary-fixed-variant": "#802918",
+                        "primary-container": "#e2725b",
+                        "surface-tint": "#9f402d",
+                        "primary": "#9f402d",
+                        "on-background": "#1a1c1a",
+                        "tertiary-fixed": "#ffd9e3",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#89726d",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#faf9f6",
+                        "on-secondary-fixed": "#171e09",
+                        "inverse-primary": "#ffb4a5",
+                        "surface": "#faf9f6",
+                        "on-primary-container": "#5a0d02",
+                        "background": "#faf9f6",
+                        "surface-container-low": "#f4f3f1",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#56423e",
+                        "on-secondary-fixed-variant": "#424a31",
+                        "tertiary-fixed-dim": "#f6b4c9",
+                        "surface-container-highest": "#e3e2e0",
+                        "surface-container": "#efeeeb",
+                        "secondary-fixed-dim": "#c2caaa",
+                        "on-tertiary-fixed": "#340d1d",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#dee6c4",
+                        "secondary-container": "#dee6c4",
+                        "error-container": "#ffdad6",
+                        "secondary": "#5a6147",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f2f1ee",
+                        "charcoal-text": "#2D3748"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "md": "24px",
+                        "sm": "12px",
+                        "xl": "80px",
+                        "gutter": "16px",
+                        "margin-desktop": "64px",
+                        "xs": "4px",
+                        "lg": "48px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #faf9f6;
+            color: #2D3748; /* Charcoal text requirement */
+        }
+        .soft-floor-shadow {
+            box-shadow: 0 10px 30px rgba(45, 55, 72, 0.05);
+        }
+        .pouch-card {
+            border: 2px solid #e3e2e0;
+            transition: all 0.3s ease;
+        }
+        .pouch-card:hover {
+            border-color: #e2725b;
+            transform: translateY(-2px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .progress-bar-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-bar-shine::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            to { left: 100%; }
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary-fixed">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-screen-2xl mx-auto bg-surface dark:bg-surface-container-low shadow-sm transition-all duration-300 ease-in-out">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">GirlyPouch</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-opacity duration-200 font-body-md text-body-md" href="#">Shop</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-opacity duration-200 font-body-md text-body-md" href="#">About</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary transition-opacity duration-200 font-body-md text-body-md" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-opacity duration-200 font-body-md text-body-md" href="#">B2B</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="md:hidden text-charcoal-text">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<button class="hidden md:block bg-primary text-on-primary px-md py-xs rounded-lg font-label-md text-label-md hover:opacity-80 transition-opacity">Get Started</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-[100px] pb-xl px-margin-mobile md:px-margin-desktop max-w-screen-md mx-auto">
+<!-- Header Section -->
+<header class="mb-lg space-y-xs">
+<h1 class="font-headline-lg text-headline-lg text-charcoal-text">Welcome back, Sarah</h1>
+<p class="text-on-surface-variant font-body-md text-body-md">Managing your wellness, one pouch at a time.</p>
+</header>
+<!-- Hero Card: Subscription Status -->
+<section class="mb-xl">
+<div class="bg-white rounded-xl p-md md:p-lg soft-floor-shadow border border-surface-container-high relative overflow-hidden">
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="inline-block px-sm py-1 bg-tertiary-container/10 text-tertiary rounded-full font-label-sm text-label-sm uppercase mb-sm">Active Subscription</span>
+<h2 class="font-headline-md text-headline-md text-charcoal-text">Next Box Ships In: 12 Days</h2>
+</div>
+<div class="text-primary">
+<span class="material-symbols-outlined text-[40px]" data-icon="package_2">package_2</span>
+</div>
+</div>
+<!-- Progress Indicator -->
+<div class="space-y-sm">
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span>Cycle Progress</span>
+<span>60%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[60%] rounded-full progress-bar-shine"></div>
+</div>
+<p class="text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                        Estimated delivery: October 24th
+                    </p>
+</div>
+</div>
+</section>
+<!-- Action Grid -->
+<section class="mb-xl">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-md">Quick Actions</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Update Address -->
+<button class="flex flex-col items-center justify-center p-md bg-primary text-white rounded-xl soft-floor-shadow hover:opacity-90 transition-all duration-200 group">
+<span class="material-symbols-outlined mb-base text-[28px]" data-icon="location_on">location_on</span>
+<span class="font-label-md text-label-md">Update Address</span>
+</button>
+<!-- Skip Next Month -->
+<button class="flex flex-col items-center justify-center p-md border-2 border-outline/20 text-charcoal-text rounded-xl hover:border-primary/40 transition-all duration-200 group">
+<span class="material-symbols-outlined mb-base text-[28px] text-on-surface-variant group-hover:text-primary transition-colors" data-icon="event_busy">event_busy</span>
+<span class="font-label-md text-label-md">Skip Next Month</span>
+</button>
+<!-- Pause Subscription -->
+<button class="flex flex-col items-center justify-center p-md bg-transparent text-on-surface-variant rounded-xl hover:bg-surface-container-low transition-all duration-200 group">
+<span class="material-symbols-outlined mb-base text-[28px] group-hover:text-error transition-colors" data-icon="pause_circle">pause_circle</span>
+<span class="font-label-md text-label-md">Pause Subscription</span>
+</button>
+</div>
+</section>
+<!-- The Pouch Detail -->
+<section class="mb-xl">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-md">Inside Your Next Pouch</h3>
+<div class="pouch-card bg-white rounded-xl p-md flex items-center gap-md">
+<div class="w-24 h-24 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A top-down aesthetic product shot of a luxury organic cotton sanitary pad and a small glass bottle of essential oils, arranged neatly on a warm cream surface with soft morning light and minimalist shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb9g5IRFiXno07X6K-Z3GS8qXgShtUlCrE_Bv5w37bynaKP3TcJHU9t-WCMb_2rmQaXgMyRGpI9e5ODIiqMhN4eF-z9hOpEuCMyfFWWDxyfZOSkvYdKl0u-V2XMvHWjF0zyooLXd-LoKomx09P0oX44f27Fz5nIo5JUpAILKviukvJ_KXPDeXw_3nIP4B0aJvPYBP8x8VL1ecSse_oIUW9zY22vhURWcCCpSbv2n_g9Zb_rPIHvwH-gJg7XzyFvZ8EjIPDQZE"/>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-sm text-headline-sm text-charcoal-text">The "Balance" Pouch</h4>
+<p class="text-on-surface-variant font-body-md text-body-md mb-xs">Organic essentials &amp; clary sage blend.</p>
+<a class="text-primary font-label-md text-label-md flex items-center gap-xs" href="#">
+                        View Full Details
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Support/Insights Bento -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="bg-secondary-container/10 p-md rounded-xl border border-secondary-container/20">
+<span class="material-symbols-outlined text-secondary mb-xs" data-icon="neurology">neurology</span>
+<h4 class="font-label-md text-label-md text-charcoal-text mb-xs">Wellness Insights</h4>
+<p class="text-label-sm text-on-surface-variant">Your energy levels usually peak in 3 days. Plan your workouts accordingly.</p>
+</div>
+<div class="bg-tertiary-container/10 p-md rounded-xl border border-tertiary-container/20">
+<span class="material-symbols-outlined text-tertiary mb-xs" data-icon="chat_bubble">chat_bubble</span>
+<h4 class="font-label-md text-label-md text-charcoal-text mb-xs">Speak with an Expert</h4>
+<p class="text-label-sm text-on-surface-variant">Have questions about your cycle? Our specialists are online now.</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-mobile md:px-margin-desktop py-lg flex flex-col md:flex-row justify-between items-center gap-base bg-surface-container-lowest dark:bg-inverse-surface">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">GirlyPouch</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Privacy Policy</a>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Terms of Service</a>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Contact Us</a>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Wholesale</a>
+</div>
+<p class="text-secondary dark:text-secondary-fixed font-label-sm text-label-sm opacity-60">© 2024 GirlyPouch. All rights reserved.</p>
+</footer>
+<!-- Micro-interaction Script -->
+<script>
+        // Simple hover effect for action grid icons
+        document.querySelectorAll('.group').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                const icon = btn.querySelector('.material-symbols-outlined');
+                if (icon) icon.style.transform = 'scale(1.1)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                const icon = btn.querySelector('.material-symbols-outlined');
+                if (icon) icon.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

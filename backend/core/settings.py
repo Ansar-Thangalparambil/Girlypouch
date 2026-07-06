@@ -28,7 +28,9 @@ INSTALLED_APPS = [
     
     # Third party packages
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
+    'drf_spectacular',
     
     # Local apps
     'apps.products',
@@ -126,3 +128,29 @@ CORS_ALLOW_ALL_ORIGINS = True  # In production, restrict this.
 # Stripe Config
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_test_dummy')
 STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', 'whsec_dummy')
+
+# Custom User Model
+AUTH_USER_MODEL = 'users.User'
+
+# Django REST Framework Config
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# Media Files (Uploads/Downloads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Swagger Documentation Config
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'GirlyPouch Platform API',
+    'DESCRIPTION': 'Core Engine API for Direct-to-Consumer (D2C) customizable product subscriptions and Business-to-Business (B2B) bulk wholesale invoicing.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+
+

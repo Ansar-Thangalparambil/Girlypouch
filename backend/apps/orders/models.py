@@ -163,6 +163,12 @@ class WholesaleInvoice(models.Model):
         ('failed', 'Failed'),
     ]
 
+    PAYMENT_STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('paid', 'Paid'),
+        ('overdue', 'Overdue'),
+    ]
+
     order = models.OneToOneField(
         Order,
         on_delete=models.CASCADE,
@@ -187,12 +193,19 @@ class WholesaleInvoice(models.Model):
         choices=PDF_STATUS_CHOICES,
         default='pending'
     )
+    payment_status = models.CharField(
+        max_length=20,
+        choices=PAYMENT_STATUS_CHOICES,
+        default='pending',
+        help_text="The tracking payment status of B2B Wholesale Invoice."
+    )
     pdf_file_path = models.CharField(
         max_length=500,
         blank=True,
         null=True,
         help_text="Path or URL to the generated invoice PDF."
     )
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

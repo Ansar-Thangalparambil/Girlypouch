@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wholesale Portal | GirlyPouch</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2f312f",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#60684c",
+                    "surface-variant": "#e3e2e0",
+                    "primary-fixed": "#ffdad3",
+                    "surface-dim": "#dbdad7",
+                    "tertiary": "#834f60",
+                    "surface-container-high": "#e9e8e5",
+                    "tertiary-container": "#be8295",
+                    "on-tertiary-fixed-variant": "#683849",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#1a1c1a",
+                    "outline-variant": "#ddc0ba",
+                    "on-primary-fixed": "#3e0500",
+                    "primary-fixed-dim": "#ffb4a5",
+                    "on-tertiary-container": "#481d2e",
+                    "on-primary-fixed-variant": "#802918",
+                    "primary-container": "#e2725b",
+                    "surface-tint": "#9f402d",
+                    "primary": "#9f402d",
+                    "on-background": "#1a1c1a",
+                    "tertiary-fixed": "#ffd9e3",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#89726d",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#faf9f6",
+                    "on-secondary-fixed": "#171e09",
+                    "inverse-primary": "#ffb4a5",
+                    "surface": "#faf9f6",
+                    "on-primary-container": "#5a0d02",
+                    "background": "#faf9f6",
+                    "surface-container-low": "#f4f3f1",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#56423e",
+                    "on-secondary-fixed-variant": "#424a31",
+                    "tertiary-fixed-dim": "#f6b4c9",
+                    "surface-container-highest": "#e3e2e0",
+                    "surface-container": "#efeeeb",
+                    "secondary-fixed-dim": "#c2caaa",
+                    "on-tertiary-fixed": "#340d1d",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#dee6c4",
+                    "secondary-container": "#dee6c4",
+                    "error-container": "#ffdad6",
+                    "secondary": "#5a6147",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f2f1ee"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "md": "24px",
+                    "sm": "12px",
+                    "xl": "80px",
+                    "gutter": "16px",
+                    "margin-desktop": "64px",
+                    "xs": "4px",
+                    "lg": "48px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f6; /* Surface Color from Branding */
+            color: #1a1c1a; /* On-Surface Color */
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .bento-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(45, 55, 72, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(45, 55, 72, 0.08);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f4f3f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2725b;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-base max-w-screen-2xl mx-auto bg-surface dark:bg-surface-container-low shadow-sm">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">GirlyPouch</span>
+<div class="hidden md:flex gap-md">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-opacity duration-200 font-body-md text-body-md" href="#">Shop</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-opacity duration-200 font-body-md text-body-md" href="#">About</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-opacity duration-200 font-body-md text-body-md" href="#">Dashboard</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary font-body-md text-body-md" href="#">B2B</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
+<button class="bg-primary text-on-primary px-md py-xs rounded-lg font-label-md text-label-md hover:opacity-80 transition-opacity">Get Started</button>
+</div>
+</nav>
+<main class="pt-32 pb-xl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto min-h-screen">
+<!-- Header Section -->
+<header class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-xs">Wholesale Order History</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    Manage your bulk inventory subscriptions, track high-volume shipments, and access historical invoicing data for your retail locations.
+                </p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs border border-outline px-md py-sm rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+                    Filter
+                </button>
+<button class="flex items-center gap-xs bg-primary text-on-primary px-md py-sm rounded-lg font-label-md text-label-md hover:opacity-90 transition-all">
+<span class="material-symbols-outlined">add</span>
+                    New Bulk Order
+                </button>
+</div>
+</header>
+<!-- Stats Bento Grid (Fintech Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-xl">
+<div class="bento-card p-md flex flex-col justify-between border-l-4 border-primary">
+<span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Total Wholesale Spend</span>
+<div class="mt-base">
+<span class="font-headline-lg text-headline-lg text-on-surface">$24,482.50</span>
+<span class="block text-secondary font-label-sm text-label-sm mt-xs">+12% from last quarter</span>
+</div>
+</div>
+<div class="bento-card p-md flex flex-col justify-between border-l-4 border-secondary">
+<span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Active Pouches</span>
+<div class="mt-base">
+<span class="font-headline-lg text-headline-lg text-on-surface">1,200</span>
+<span class="block text-secondary font-label-sm text-label-sm mt-xs">Next shipment: Oct 14</span>
+</div>
+</div>
+<div class="bento-card p-md flex flex-col justify-between border-l-4 border-outline">
+<span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Open Invoices</span>
+<div class="mt-base">
+<span class="font-headline-lg text-headline-lg text-on-surface">02</span>
+<span class="block text-error font-label-sm text-label-sm mt-xs">1 Payment Overdue</span>
+</div>
+</div>
+</div>
+<!-- Data Table Section -->
+<section class="bento-card overflow-hidden">
+<div class="px-md py-md border-b border-surface-variant flex justify-between items-center bg-surface-bright">
+<h3 class="font-headline-md text-headline-md text-on-surface">Transactions</h3>
+<div class="flex gap-xs">
+<button class="p-xs hover:bg-surface-container rounded-md transition-colors"><span class="material-symbols-outlined text-on-surface-variant">search</span></button>
+<button class="p-xs hover:bg-surface-container rounded-md transition-colors"><span class="material-symbols-outlined text-on-surface-variant">download</span></button>
+</div>
+</div>
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-surface-variant">
+<th class="px-md py-md font-label-md text-label-md text-on-surface-variant">Invoice #</th>
+<th class="px-md py-md font-label-md text-label-md text-on-surface-variant">Date</th>
+<th class="px-md py-md font-label-md text-label-md text-on-surface-variant">Quantity</th>
+<th class="px-md py-md font-label-md text-label-md text-on-surface-variant">Total</th>
+<th class="px-md py-md font-label-md text-label-md text-on-surface-variant">Status</th>
+<th class="px-md py-md font-label-md text-label-md text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-md py-md font-body-md text-body-md text-on-surface font-medium">#INV-9902</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface-variant">Oct 02, 2024</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface-variant">450 Units</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface font-semibold">$5,400.00</td>
+<td class="px-md py-md">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-[#8F9779] bg-opacity-10 text-[#5a6147] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#8F9779] mr-base"></span>
+                                    Paid
+                                </span>
+</td>
+<td class="px-md py-md text-right">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined" title="Download PDF">picture_as_pdf</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-md py-md font-body-md text-body-md text-on-surface font-medium">#INV-9854</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface-variant">Sep 15, 2024</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface-variant">300 Units</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface font-semibold">$3,600.00</td>
+<td class="px-md py-md">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-[#dbdad7] text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#89726d] mr-base"></span>
+                                    Unpaid
+                                </span>
+</td>
+<td class="px-md py-md text-right">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined" title="Download PDF">picture_as_pdf</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-md py-md font-body-md text-body-md text-on-surface font-medium">#INV-9821</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface-variant">Sep 01, 2024</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface-variant">1,000 Units</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface font-semibold">$12,000.00</td>
+<td class="px-md py-md">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-[#8F9779] bg-opacity-10 text-[#5a6147] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#8F9779] mr-base"></span>
+                                    Paid
+                                </span>
+</td>
+<td class="px-md py-md text-right">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined" title="Download PDF">picture_as_pdf</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-md py-md font-body-md text-body-md text-on-surface font-medium">#INV-9744</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface-variant">Aug 18, 2024</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface-variant">150 Units</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface font-semibold">$1,800.00</td>
+<td class="px-md py-md">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-[#8F9779] bg-opacity-10 text-[#5a6147] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#8F9779] mr-base"></span>
+                                    Paid
+                                </span>
+</td>
+<td class="px-md py-md text-right">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined" title="Download PDF">picture_as_pdf</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-md py-md font-body-md text-body-md text-on-surface font-medium">#INV-9612</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface-variant">Jul 30, 2024</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface-variant">200 Units</td>
+<td class="px-md py-md font-body-md text-body-md text-on-surface font-semibold">$2,400.00</td>
+<td class="px-md py-md">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-[#8F9779] bg-opacity-10 text-[#5a6147] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#8F9779] mr-base"></span>
+                                    Paid
+                                </span>
+</td>
+<td class="px-md py-md text-right">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined" title="Download PDF">picture_as_pdf</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-md py-md bg-surface-container-low flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Showing 1 to 5 of 24 invoices</span>
+<div class="flex gap-xs">
+<button class="p-xs border border-outline rounded hover:bg-surface-container transition-colors material-symbols-outlined text-on-surface-variant">chevron_left</button>
+<button class="p-xs border border-outline rounded bg-primary text-on-primary font-label-md text-label-md px-md">1</button>
+<button class="p-xs border border-outline rounded hover:bg-surface-container transition-colors font-label-md text-label-md px-md">2</button>
+<button class="p-xs border border-outline rounded hover:bg-surface-container transition-colors font-label-md text-label-md px-md">3</button>
+<button class="p-xs border border-outline rounded hover:bg-surface-container transition-colors material-symbols-outlined text-on-surface-variant">chevron_right</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-lg flex flex-col md:flex-row justify-between items-center gap-base bg-surface-container-lowest dark:bg-inverse-surface">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">GirlyPouch</span>
+<p class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed opacity-60">© 2024 GirlyPouch. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Privacy Policy</a>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Terms of Service</a>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Contact Us</a>
+<a class="text-primary dark:text-primary-fixed transition-colors font-label-sm text-label-sm font-bold" href="#">Wholesale</a>
+</div>
+</footer>
+<script>
+        // Micro-interaction for table rows
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('click', (e) => {
+                if(e.target.closest('button')) return;
+                console.log('Row clicked, navigating to detail view...');
+            });
+        });
+    </script>
+</body></html>

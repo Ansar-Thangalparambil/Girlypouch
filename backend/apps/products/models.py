@@ -16,6 +16,12 @@ class PadComponent(models.Model):
     component_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default='regular_pad')
     stock_level = models.PositiveIntegerField(default=0, help_text="Current available inventory level.")
     low_stock_threshold = models.PositiveIntegerField(default=10, help_text="Inventory level that triggers a low stock alert.")
+    wholesale_price = models.DecimalField(
+        max_digits=10, 
+        decimal_places=2, 
+        default=0.50, 
+        help_text="Wholesale price per unit for bulk B2B invoices."
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

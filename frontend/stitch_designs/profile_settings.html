@@ -1,0 +1,348 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Profile Settings | GirlyPouch</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f4f3f1",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#faf9f6",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#802918",
+                    "on-tertiary-fixed": "#340d1d",
+                    "background": "#faf9f6",
+                    "tertiary-container": "#be8295",
+                    "inverse-on-surface": "#f2f1ee",
+                    "on-surface-variant": "#56423e",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#e2725b",
+                    "on-primary-container": "#5a0d02",
+                    "secondary-fixed": "#dee6c4",
+                    "on-secondary-fixed": "#171e09",
+                    "secondary-container": "#dee6c4",
+                    "on-surface": "#1a1c1a",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#faf9f6",
+                    "tertiary-fixed-dim": "#f6b4c9",
+                    "outline": "#89726d",
+                    "tertiary": "#834f60",
+                    "outline-variant": "#ddc0ba",
+                    "surface-container-highest": "#e3e2e0",
+                    "on-secondary-container": "#60684c",
+                    "surface-dim": "#dbdad7",
+                    "inverse-primary": "#ffb4a5",
+                    "surface-container-high": "#e9e8e5",
+                    "on-tertiary-fixed-variant": "#683849",
+                    "inverse-surface": "#2f312f",
+                    "tertiary-fixed": "#ffd9e3",
+                    "on-tertiary-container": "#481d2e",
+                    "on-primary-fixed": "#3e0500",
+                    "on-error-container": "#93000a",
+                    "on-background": "#1a1c1a",
+                    "secondary-fixed-dim": "#c2caaa",
+                    "surface-container": "#efeeeb",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#ffb4a5",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#ffdad3",
+                    "surface-variant": "#e3e2e0",
+                    "surface-tint": "#9f402d",
+                    "primary": "#9f402d",
+                    "on-secondary-fixed-variant": "#424a31",
+                    "secondary": "#5a6147",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "24px",
+                    "xs": "4px",
+                    "sm": "12px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "xl": "80px",
+                    "margin-mobile": "20px",
+                    "lg": "48px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f6;
+            color: #1a1c1a;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .soft-shadow {
+            box-shadow: 0 10px 30px rgba(45, 55, 72, 0.05);
+        }
+        .nav-item-active {
+            background-color: rgba(159, 64, 45, 0.08);
+            color: #9f402d;
+            border-right: 3px solid #9f402d;
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-base max-w-screen-2xl mx-auto bg-surface dark:bg-surface-container-low shadow-sm transition-all duration-300 ease-in-out">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">GirlyPouch</span>
+<div class="hidden md:flex gap-md ml-lg">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary hover:opacity-80 transition-opacity duration-200 font-body-md text-body-md" href="#">Shop</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary hover:opacity-80 transition-opacity duration-200 font-body-md text-body-md" href="#">About</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary hover:opacity-80 transition-opacity duration-200 font-body-md text-body-md" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary hover:opacity-80 transition-opacity duration-200 font-body-md text-body-md" href="#">B2B</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+
+<span class="material-symbols-outlined cursor-pointer text-on-surface-variant" data-icon="account_circle">account_circle</span>
+<span class="md:hidden material-symbols-outlined cursor-pointer text-on-surface-variant" data-icon="menu">menu</span>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<main class="flex-grow pt-[80px] max-w-screen-2xl mx-auto w-full px-margin-mobile md:px-margin-desktop py-lg">
+<!-- Page Header -->
+<header class="mb-lg">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Profile Settings</h1>
+<p class="text-on-surface-variant font-body-md text-body-md">Manage your personal information, subscription preferences, and security.</p>
+</header>
+<div class="flex flex-col md:grid md:grid-cols-12 gap-lg">
+<!-- Sidebar Navigation -->
+<aside class="md:col-span-3 space-y-xs">
+<nav class="flex flex-row md:flex-col overflow-x-auto no-scrollbar gap-xs md:gap-0">
+<a class="flex items-center gap-sm px-md py-sm rounded-lg whitespace-nowrap nav-item-active group transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Personal Info</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg whitespace-nowrap text-on-surface-variant hover:bg-surface-container hover:text-primary group transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="box_add">box_add</span>
+<span class="font-label-md text-label-md">Subscription</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg whitespace-nowrap text-on-surface-variant hover:bg-surface-container hover:text-primary group transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="shield">shield</span>
+<span class="font-label-md text-label-md">Security</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg whitespace-nowrap text-on-surface-variant hover:bg-surface-container hover:text-primary group transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<span class="font-label-md text-label-md">Notifications</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg whitespace-nowrap text-on-surface-variant hover:bg-surface-container hover:text-primary group transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="credit_card">credit_card</span>
+<span class="font-label-md text-label-md">Payments</span>
+</a>
+</nav>
+</aside>
+<!-- Settings Content -->
+<section class="md:col-span-9 space-y-lg">
+<!-- Personal Information Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md md:p-lg soft-shadow border border-outline-variant/30">
+<div class="flex items-center justify-between mb-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Personal Information</h2>
+<span class="bg-secondary-container/10 text-on-secondary-container text-label-sm font-label-sm px-sm py-xs rounded-full uppercase tracking-wider">Verified</span>
+</div>
+<div class="flex flex-col md:flex-row gap-lg items-start mb-lg">
+<div class="relative group">
+<div class="w-24 h-24 rounded-full overflow-hidden bg-surface-container-high border-2 border-primary-container/20">
+<img class="w-full h-full object-cover" data-alt="A professional high-end studio portrait of a woman with a gentle smile, soft natural lighting, elegant minimalist aesthetic, warm cream background matching the UI palette, soft focus details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDONw3N3bmauuM-aZE7YDzd5tKPiBqr1rpFE-n4Qs7SlzLeQTiR9xbR33j-ShNn02gRLv4KrK1yPZUtGlUloabMLyDvdkTvBSOjf7v4yAOQeTgZbBGiy9UQBUhkw2wQqU95AKWhmGirp2OHQAuh-AIyx5ctI1oNTx9i8KaEMnci7drrzDDkGapj3B0H67BsrWB7oRw4Ncd9GAxIMKpKpw8evk5s5mZ6X8A0j17FXR1nhr3P2w6_YLvBHcFleZe3SGX5wm2PvFc">
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-on-primary p-xs rounded-full shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+</div>
+<div class="flex-grow grid grid-cols-1 md:grid-cols-2 gap-md w-full">
+<div class="space-y-xs relative">
+<label class="block text-label-sm font-label-sm text-on-surface-variant ml-xs">Full Name</label>
+<input class="w-full px-md py-sm bg-surface rounded-lg border border-outline/20 focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none font-body-md" type="text" value="Elena Rodriguez">
+</div>
+<div class="space-y-xs relative">
+<label class="block text-label-sm font-label-sm text-on-surface-variant ml-xs">Email Address</label>
+<input class="w-full px-md py-sm bg-surface rounded-lg border border-outline/20 focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none font-body-md" type="email" value="elena.r@lifestyle.com">
+</div>
+<div class="space-y-xs relative">
+<label class="block text-label-sm font-label-sm text-on-surface-variant ml-xs">Phone Number</label>
+<input class="w-full px-md py-sm bg-surface rounded-lg border border-outline/20 focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none font-body-md" type="tel" value="+1 (555) 902-4421">
+</div>
+<div class="space-y-xs relative">
+<label class="block text-label-sm font-label-sm text-on-surface-variant ml-xs">Timezone</label>
+<select class="w-full px-md py-sm bg-surface rounded-lg border border-outline/20 focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none font-body-md appearance-none">
+<option>Pacific Time (PT)</option>
+<option>Mountain Time (MT)</option>
+<option>Central Time (CT)</option>
+<option>Eastern Time (ET)</option>
+</select>
+</div>
+</div>
+</div>
+<div class="flex justify-end gap-md border-t border-outline-variant/30 pt-md">
+<button class="px-md py-sm font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Cancel</button>
+<button class="px-lg py-sm bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 transition-all shadow-sm">Save Changes</button>
+</div>
+</div>
+<!-- Password Management Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md md:p-lg soft-shadow border border-outline-variant/30">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="lock_reset">lock_reset</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Security &amp; Password</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-lg">
+<div class="space-y-xs">
+<label class="block text-label-sm font-label-sm text-on-surface-variant ml-xs">Current Password</label>
+<input class="w-full px-md py-sm bg-surface rounded-lg border border-outline/20 focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" placeholder="••••••••••••" type="password">
+</div>
+<div class="space-y-xs">
+<label class="block text-label-sm font-label-sm text-on-surface-variant ml-xs">New Password</label>
+<input class="w-full px-md py-sm bg-surface rounded-lg border border-outline/20 focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none" placeholder="••••••••••••" type="password">
+</div>
+</div>
+<div class="flex items-center justify-between p-md bg-surface-container rounded-lg border border-outline-variant/20">
+<div class="flex gap-md items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="phonelink_lock">phonelink_lock</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Two-Factor Authentication</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Add an extra layer of security to your account.</p>
+</div>
+</div>
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-primary" onclick="this.classList.toggle('bg-primary'); this.classList.toggle('bg-outline-variant')">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+<!-- Specialized Pouch Component (Subscription Summary) -->
+<div class="bg-surface-container-lowest rounded-xl p-md md:p-lg soft-shadow border-2 border-primary-container/20 relative overflow-hidden">
+<!-- Subtle pattern background -->
+<div class="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] rotate-12" data-icon="package_2">package_2</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-md">
+<div>
+<div class="flex items-center gap-xs text-primary mb-xs">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Active Subscription</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Premium Monthly Pouch</h3>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Next Delivery</p>
+<p class="font-headline-sm text-headline-sm text-primary font-bold">Oct 24, 2023</p>
+</div>
+</div>
+<!-- Progress Bar Component -->
+<div class="space-y-xs mb-lg">
+<div class="flex justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span class="">Pouch Preparation</span>
+<span class="">75% Complete</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary transition-all duration-1000 ease-out" style="width: 75%"></div>
+</div>
+</div>
+<div class="flex flex-wrap gap-sm">
+<button class="px-md py-sm border border-primary text-primary rounded-lg font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all">Manage Subscription</button>
+<button class="px-md py-sm text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="history">history</span>
+                            View Billing History
+                        </button>
+</div>
+</div>
+<!-- Danger Zone -->
+<div class="p-md md:p-lg border border-error/20 bg-error-container/10 rounded-xl">
+<h2 class="font-label-md text-label-md text-error mb-xs">Danger Zone</h2>
+<p class="text-label-sm font-label-sm text-on-surface-variant mb-md">Once you delete your account, there is no going back. Please be certain.</p>
+<button class="px-md py-sm border border-error text-error rounded-lg font-label-md text-label-md hover:bg-error hover:text-on-error transition-all">Delete Account</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-lg flex flex-col md:flex-row justify-between items-center gap-base bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant/10">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">GirlyPouch</span>
+<p class="font-label-sm text-label-sm text-on-secondary-container dark:text-secondary-fixed-dim">© 2024 GirlyPouch. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Privacy Policy</a>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Terms of Service</a>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Contact Us</a>
+<a class="text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Wholesale</a>
+</div>
+</footer>
+<!-- Simple Interactivity for Demo -->
+<script>
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.closest('aside')) {
+                    e.preventDefault();
+                    document.querySelectorAll('aside nav a').forEach(l => l.classList.remove('nav-item-active'));
+                    document.querySelectorAll('aside nav a').forEach(l => {
+                        l.classList.add('text-on-surface-variant');
+                        l.classList.remove('bg-primary-container/10');
+                    });
+                    link.classList.add('nav-item-active');
+                    link.classList.remove('text-on-surface-variant');
+                }
+            });
+        });
+
+        // Hover lift effect for inputs
+        document.querySelectorAll('input, select').forEach(el => {
+            el.addEventListener('focus', () => {
+                el.parentElement.classList.add('scale-[1.01]');
+            });
+            el.addEventListener('blur', () => {
+                el.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+    </script>
+
+
+</body></html>

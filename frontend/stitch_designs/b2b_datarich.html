@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GirlyPouch | B2B Partner Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffd9e3",
+                    "surface": "#faf9f6",
+                    "primary-fixed": "#ffdad3",
+                    "surface-container-low": "#f4f3f1",
+                    "outline-variant": "#ddc0ba",
+                    "on-tertiary-container": "#481d2e",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#ffb4a5",
+                    "secondary": "#5a6147",
+                    "on-primary-container": "#5a0d02",
+                    "tertiary": "#834f60",
+                    "on-surface-variant": "#56423e",
+                    "on-surface": "#1a1c1a",
+                    "on-secondary-container": "#60684c",
+                    "inverse-surface": "#2f312f",
+                    "outline": "#89726d",
+                    "on-primary-fixed": "#3e0500",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#f6b4c9",
+                    "on-secondary-fixed": "#171e09",
+                    "on-primary-fixed-variant": "#802918",
+                    "surface-bright": "#faf9f6",
+                    "surface-tint": "#9f402d",
+                    "on-secondary-fixed-variant": "#424a31",
+                    "tertiary-container": "#be8295",
+                    "surface-variant": "#e3e2e0",
+                    "surface-container-highest": "#e3e2e0",
+                    "secondary-container": "#dee6c4",
+                    "surface-dim": "#dbdad7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#1a1c1a",
+                    "primary-container": "#e2725b",
+                    "on-tertiary-fixed": "#340d1d",
+                    "surface-container": "#efeeeb",
+                    "secondary-fixed": "#dee6c4",
+                    "surface-container-high": "#e9e8e5",
+                    "background": "#faf9f6",
+                    "inverse-primary": "#ffb4a5",
+                    "secondary-fixed-dim": "#c2caaa",
+                    "primary": "#9f402d",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#683849",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f2f1ee"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "md": "24px",
+                    "margin-desktop": "64px",
+                    "gutter": "16px",
+                    "xl": "80px",
+                    "margin-mobile": "20px",
+                    "xs": "4px",
+                    "lg": "48px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f6;
+            color: #1a1c1a;
+            -webkit-font-smoothing: antialiased;
+        }
+        .soft-floor-shadow {
+            box-shadow: 0 10px 30px rgba(45, 55, 72, 0.05);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        /* Hide scrollbars for high-density matrix */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .active-tab-indicator {
+            position: relative;
+        }
+        .active-tab-indicator::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #9f402d;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TopNavBar -->
+<header class="bg-surface shadow-sm sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">GirlyPouch</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#">Shop</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#">Dashboard</a>
+<a class="text-primary border-b-2 border-primary font-bold pb-1 font-label-md text-label-md" href="#">Wholesale</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#">Financials</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/20">
+<span class="material-symbols-outlined text-outline mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48" placeholder="Search invoices..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-colors active:scale-95 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/30 mx-2"></div>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-outline-variant/50 hover:bg-surface-variant transition-colors">
+<div class="w-6 h-6 rounded-full bg-tertiary-container flex items-center justify-center text-[10px] text-white font-bold">JD</div>
+<span class="hidden sm:inline font-label-md text-label-md">Profile</span>
+</button>
+</div>
+</div>
+</nav>
+</header>
+<main class="flex-grow max-w-7xl mx-auto w-full px-margin-mobile md:px-margin-desktop py-base md:py-lg">
+<!-- Summary Cards Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md mb-lg">
+<!-- Account Balance -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/10 soft-floor-shadow flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Account Balance</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-xs">$31,250.00</h2>
+</div>
+<div class="mt-md flex items-center text-secondary font-label-md">
+<span class="material-symbols-outlined mr-1 text-sm">trending_up</span>
+<span>Next payment due in 12 days</span>
+</div>
+</div>
+<!-- Pending Invoices -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/10 soft-floor-shadow flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Pending Invoices</span>
+<div class="flex items-baseline gap-2 mt-xs">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">3</h2>
+<span class="text-on-surface-variant font-label-md">Processing</span>
+</div>
+</div>
+<div class="mt-md">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%]" style="transition: width 1s ease-in-out;"></div>
+</div>
+<div class="flex justify-between mt-2 font-label-sm text-on-surface-variant">
+<span>Fulfillment</span>
+<span>65% Complete</span>
+</div>
+</div>
+</div>
+<!-- Terms Status -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant/10 soft-floor-shadow flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Terms Status</span>
+<div class="flex items-center gap-3 mt-xs">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Active</h2>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-label-sm text-label-sm">Net-30</span>
+</div>
+</div>
+<div class="mt-md flex items-center justify-between">
+<span class="text-on-surface-variant font-label-md">Credit Limit: $100k</span>
+<button class="text-primary font-label-md hover:underline">Request Increase</button>
+</div>
+</div>
+</section>
+<!-- Quick Bulk Matrix (Ordering System) -->
+<section class="mb-lg">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-headline-md text-headline-md">Quick Bulk Matrix</h3>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-surface-container text-on-surface-variant rounded-lg font-label-md hover:bg-surface-variant transition-colors">Clear All</button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md hover:opacity-90 shadow-sm transition-all active:scale-95">Add to Order</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 soft-floor-shadow overflow-hidden">
+<div class="overflow-x-auto no-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant/20">
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Product SKU</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Variant/Color</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Unit Price</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant">Stock</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant text-center">Case Qty (12)</th>
+<th class="px-6 py-4 font-label-md text-on-surface-variant text-right">Subtotal</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Matrix Row 1 -->
+<tr class="hover:bg-surface transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-variant flex-shrink-0" data-alt="Close up high-end studio photography of a premium wellness subscription box, warm cream lighting, minimalist and tactile aesthetic, soft shadows." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXQFieA5WD16aQmt5DGK7aX_W6PRIZJvNAWjwLPb3mLeUpd4Ux1bHW0TEJZ4G-ZKn-sH4e19LGGHiQKPGbVewnO1OD42R4l4dnU81HVyLy2aAkPXgTVug5f508YJ3VIJzgG_BobZfaU1UoF4b0lWJ9eB0kji8eFJXqiTv9_mnJTbMxPjhVYSBqhfLeZWXehq9TbTLry8QlTKbw_zDElYatwGEwfTLAp_xJrP1P1Bsw7neKmeCvT32ESooei_ZXa9beaaDQfqc')"></div>
+<div>
+<div class="font-bold text-on-surface">GP-LUX-001</div>
+<div class="text-on-surface-variant text-sm">Signature Pouch</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded text-xs font-bold uppercase tracking-tight">Terracotta Blush</span>
+</td>
+<td class="px-6 py-4 text-on-surface font-label-md">$14.50</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-sm">1,240 unit</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center">
+<div class="flex items-center border border-outline-variant/40 rounded-lg bg-surface-container-low">
+<button class="px-3 py-1 hover:bg-outline-variant/20 transition-colors">-</button>
+<input class="w-12 text-center bg-transparent border-none focus:ring-0 text-sm font-bold" type="number" value="25"/>
+<button class="px-3 py-1 hover:bg-outline-variant/20 transition-colors">+</button>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-bold text-primary">$4,350.00</td>
+</tr>
+<!-- Matrix Row 2 -->
+<tr class="hover:bg-surface transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-variant flex-shrink-0" data-alt="Minimalist macro photography of a high-quality wellness textile in a muted rose color, shallow depth of field, elegant and luxury feel, soft natural light." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBYhfNjYxeB_4Or1-t_W9G_HFsTTnntk0244nd7OwmN9IZd-jFi3Kjv4b_5acbg5pF_CvR6fh1FnvzmDy5bMJwynaOmqVdAxu-si9gq0UKNo6rgG1DssduwU03kVa9vBXBZBgQAaHAJ_0tk_fIFfdV1Cl38ksnI-JTjoBR4fDE_kvN4Pv4MQYJ53_ob4SkZyY1hT_BOmlyuPlLi47H6zBtggH274eBavaX4zNjPIdNJQczOzv7eb2Lz2RZkztCctBAKratS-wM')"></div>
+<div>
+<div class="font-bold text-on-surface">GP-ECO-042</div>
+<div class="text-on-surface-variant text-sm">Hemp Wellness Case</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-secondary-fixed text-on-secondary-fixed rounded text-xs font-bold uppercase tracking-tight">Sage Leaf</span>
+</td>
+<td class="px-6 py-4 text-on-surface font-label-md">$18.25</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-sm">890 unit</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center">
+<div class="flex items-center border border-outline-variant/40 rounded-lg bg-surface-container-low">
+<button class="px-3 py-1 hover:bg-outline-variant/20 transition-colors">-</button>
+<input class="w-12 text-center bg-transparent border-none focus:ring-0 text-sm font-bold" type="number" value="10"/>
+<button class="px-3 py-1 hover:bg-outline-variant/20 transition-colors">+</button>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-bold text-primary">$2,190.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Financial Ledger Section -->
+<section>
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-headline-md text-headline-md">Financial Ledger</h3>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors text-sm">
+<span class="material-symbols-outlined text-base">filter_list</span>
+                        Filter
+                    </button>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors text-sm">
+<span class="material-symbols-outlined text-base">ios_share</span>
+                        Export CSV
+                    </button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 soft-floor-shadow overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low/50 border-b border-outline-variant/20">
+<th class="px-6 py-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Date</th>
+<th class="px-6 py-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Invoice ID</th>
+<th class="px-6 py-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Description</th>
+<th class="px-6 py-4 font-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 font-label-sm text-on-surface-variant uppercase tracking-wider text-right">Amount</th>
+<th class="px-6 py-4 font-label-sm text-on-surface-variant uppercase tracking-wider text-center">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Ledger Item 1 -->
+<tr class="hover:bg-surface/50 transition-colors">
+<td class="px-6 py-4 font-label-md">Oct 24, 2023</td>
+<td class="px-6 py-4 font-label-md text-primary font-bold">INV-92841</td>
+<td class="px-6 py-4 text-on-surface-variant">Bulk Order: Autumn Restock</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                        Paid
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right font-bold">$12,450.00</td>
+<td class="px-6 py-4 text-center">
+<button class="p-2 text-outline hover:text-primary transition-colors" title="Download PDF">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</button>
+</td>
+</tr>
+<!-- Ledger Item 2 -->
+<tr class="hover:bg-surface/50 transition-colors">
+<td class="px-6 py-4 font-label-md">Nov 02, 2023</td>
+<td class="px-6 py-4 font-label-md text-primary font-bold">INV-93102</td>
+<td class="px-6 py-4 text-on-surface-variant">Holiday Sample Kit 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                        Pending
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right font-bold">$1,200.00</td>
+<td class="px-6 py-4 text-center">
+<button class="p-2 text-outline hover:text-primary transition-colors" title="Download PDF">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</button>
+</td>
+</tr>
+<!-- Ledger Item 3 -->
+<tr class="hover:bg-surface/50 transition-colors">
+<td class="px-6 py-4 font-label-md">Nov 15, 2023</td>
+<td class="px-6 py-4 font-label-md text-primary font-bold">INV-93556</td>
+<td class="px-6 py-4 text-on-surface-variant">Wholesale Subscription: Pouch Q4</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-xs font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                                        Draft
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right font-bold">$17,600.00</td>
+<td class="px-6 py-4 text-center">
+<button class="p-2 text-outline hover:text-primary transition-colors" title="Download PDF">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-surface-container-low/30 px-6 py-4 border-t border-outline-variant/10 flex items-center justify-between">
+<span class="text-sm text-on-surface-variant">Showing 1-10 of 42 entries</span>
+<div class="flex gap-2">
+<button class="p-2 rounded border border-outline-variant/30 hover:bg-surface-container transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="p-2 rounded border border-outline-variant/30 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant/10 mt-xl">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-lg max-w-7xl mx-auto">
+<div class="mb-lg md:mb-0">
+<span class="font-headline-md text-headline-md font-bold text-on-surface-variant">GirlyPouch</span>
+<p class="mt-2 font-body-md text-on-surface-variant opacity-80">Premium wholesale wellness for modern brands.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-gutter md:gap-lg mb-lg md:mb-0">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">Mission</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">Support</a>
+<a class="text-primary underline font-label-md" href="#">Wholesale</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">Terms</a>
+</div>
+<div class="text-label-sm text-on-surface-variant/70">
+                © 2024 GirlyPouch. All rights reserved.
+            </div>
+</div>
+</footer>
+<!-- FAB (Suppressed for high-density B2B context but kept structure in case needed) -->
+<!-- Determined suppression based on "Task-Focused" rule for ledger/portal -->
+<script>
+        // Micro-interaction for input fields
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('change', function() {
+                // Future logic: calculate subtotals dynamically
+                console.log('Value changed to:', this.value);
+            });
+        });
+
+        // Simple button animation
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
+            btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
+        });
+    </script>
+</body></html>

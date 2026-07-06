@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LUNA WHOLESALE | Partner Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Shared Style Guidance Tokens -->
+<style>
+        :root {
+            --surface-container-low: #f4f3f1;
+            --terracotta: #9f402d;
+            --charcoal: #1a1c1a;
+            --cream: #faf9f6;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(221, 192, 186, 0.3);
+        }
+
+        .soft-shadow {
+            box-shadow: 0 10px 30px rgba(45, 55, 72, 0.05);
+        }
+
+        .pouch-border {
+            border: 2px solid #9f402d;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ddc0ba;
+            border-radius: 10px;
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-up { animation: slideInUp 0.6s ease-out forwards; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-high": "#e9e8e5",
+                      "on-surface": "#1a1c1a",
+                      "error": "#ba1a1a",
+                      "on-tertiary-container": "#481d2e",
+                      "on-background": "#1a1c1a",
+                      "surface-dim": "#dbdad7",
+                      "primary-fixed": "#ffdad3",
+                      "on-primary-fixed-variant": "#802918",
+                      "on-secondary-container": "#60684c",
+                      "surface-tint": "#9f402d",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "surface": "#faf9f6",
+                      "inverse-surface": "#2f312f",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#faf9f6",
+                      "primary": "#9f402d",
+                      "inverse-on-surface": "#f2f1ee",
+                      "secondary-fixed-dim": "#c2caaa",
+                      "background": "#faf9f6",
+                      "surface-container-highest": "#e3e2e0",
+                      "inverse-primary": "#ffb4a5",
+                      "secondary-fixed": "#dee6c4",
+                      "on-tertiary-fixed-variant": "#683849",
+                      "on-primary-fixed": "#3e0500",
+                      "tertiary-fixed-dim": "#f6b4c9",
+                      "on-secondary-fixed": "#171e09",
+                      "surface-container-low": "#f4f3f1",
+                      "primary-container": "#e2725b",
+                      "secondary-container": "#dee6c4",
+                      "secondary": "#5a6147",
+                      "error-container": "#ffdad6",
+                      "tertiary": "#834f60",
+                      "tertiary-container": "#be8295",
+                      "on-secondary-fixed-variant": "#424a31",
+                      "surface-container": "#efeeeb",
+                      "outline-variant": "#ddc0ba",
+                      "surface-variant": "#e3e2e0",
+                      "on-primary-container": "#5a0d02",
+                      "tertiary-fixed": "#ffd9e3",
+                      "on-tertiary-fixed": "#340d1d",
+                      "on-primary": "#ffffff",
+                      "on-surface-variant": "#56423e",
+                      "primary-fixed-dim": "#ffb4a5",
+                      "on-error": "#ffffff",
+                      "outline": "#89726d",
+                      "surface-container-lowest": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "sm": "12px",
+                      "margin-mobile": "20px",
+                      "margin-desktop": "64px",
+                      "base": "8px",
+                      "xl": "80px",
+                      "md": "24px",
+                      "lg": "48px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "display-lg-mobile": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "headline-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<nav class="w-full h-16 bg-surface border-b border-outline-variant/30 shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center px-margin-desktop max-w-7xl mx-auto h-full">
+<div class="font-headline-md text-headline-md font-bold text-primary">LUNA WHOLESALE</div>
+<div class="hidden md:flex gap-lg items-center">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md cursor-pointer transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-on-surface-variant font-medium font-body-md text-body-md hover:text-primary transition-colors duration-200 cursor-pointer" href="#">Shop</a>
+<a class="text-on-surface-variant font-medium font-body-md text-body-md hover:text-primary transition-colors duration-200 cursor-pointer" href="#">Financials</a>
+<a class="text-on-surface-variant font-medium font-body-md text-body-md hover:text-primary transition-colors duration-200 cursor-pointer" href="#">Support</a>
+</div>
+<div class="flex items-center gap-md">
+<div class="material-symbols-outlined text-primary cursor-pointer active:opacity-70 transition-opacity">notifications</div>
+<div class="material-symbols-outlined text-primary cursor-pointer active:opacity-70 transition-opacity">account_circle</div>
+</div>
+</div>
+</nav>
+<!-- Sidebar & Layout -->
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col py-lg px-sm gap-base h-screen w-64 fixed left-0 top-16 bg-surface-container-low border-r border-outline-variant/20 shadow-md">
+<div class="px-sm mb-lg">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Partner Portal</h2>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Premium Tier Merchant</p>
+</div>
+<div class="flex flex-col gap-xs flex-grow">
+<button class="flex items-center gap-sm px-md py-sm bg-secondary-container text-on-secondary-container rounded-lg font-bold hover:translate-x-1 duration-200 transition-all">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Overview</span>
+</button>
+<button class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg hover:translate-x-1 duration-200 transition-all">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md text-label-md">Bulk Order</span>
+</button>
+<button class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg hover:translate-x-1 duration-200 transition-all">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</button>
+<button class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg hover:translate-x-1 duration-200 transition-all">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Invoices</span>
+</button>
+<button class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg hover:translate-x-1 duration-200 transition-all">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</button>
+</div>
+<div class="mt-auto flex flex-col gap-xs border-t border-outline-variant/20 pt-md">
+<button class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</button>
+<button class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-grow ml-0 lg:ml-64 p-margin-mobile md:p-margin-desktop max-w-7xl">
+<!-- Header Section -->
+<div class="mb-xl">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-xs">Welcome back, GirlyPouch</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Your business performance at a glance. We've detected an opportunity for inventory restocking in your Northwest region.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Left/Middle Content Area -->
+<div class="lg:col-span-8 space-y-lg">
+<!-- KPI Cards Section (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- KPI Card 1 -->
+<div class="bg-surface-container-lowest p-md rounded-xl soft-shadow border border-outline-variant/10 animate-up">
+<div class="flex items-center justify-between mb-sm">
+<span class="material-symbols-outlined text-primary p-xs bg-primary-fixed rounded-lg">analytics</span>
+<span class="text-secondary font-label-sm text-label-sm bg-secondary/10 px-sm py-xs rounded-full uppercase tracking-wider">Growth +12%</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface-variant">Total Volume Ordered (YTD)</h3>
+<p class="font-headline-lg text-headline-lg text-on-surface mt-xs">14,250 Units</p>
+</div>
+<!-- KPI Card 2 -->
+<div class="bg-surface-container-lowest p-md rounded-xl soft-shadow border border-outline-variant/10 animate-up" style="animation-delay: 0.1s;">
+<div class="flex items-center justify-between mb-sm">
+<span class="material-symbols-outlined text-tertiary p-xs bg-tertiary-fixed rounded-lg">local_shipping</span>
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Scheduled</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface-variant">Next Scheduled Delivery</h3>
+<p class="font-headline-lg text-headline-lg text-on-surface mt-xs">Nov 14, 2024</p>
+</div>
+<!-- KPI Card 3 -->
+<div class="bg-surface-container-lowest p-md rounded-xl soft-shadow border border-outline-variant/10 animate-up" style="animation-delay: 0.2s;">
+<div class="flex items-center justify-between mb-sm">
+<span class="material-symbols-outlined text-secondary p-xs bg-secondary-fixed rounded-lg">account_balance_wallet</span>
+<span class="text-error font-label-sm text-label-sm uppercase tracking-wider">Due in 5d</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface-variant">Current Balance</h3>
+<p class="font-headline-lg text-headline-lg text-on-surface mt-xs">$4,820.00</p>
+</div>
+<!-- KPI Card 4 -->
+<div class="bg-surface-container-lowest p-md rounded-xl soft-shadow border border-outline-variant/10 animate-up" style="animation-delay: 0.3s;">
+<div class="flex items-center justify-between mb-sm">
+<span class="material-symbols-outlined text-primary p-xs bg-primary-fixed rounded-lg">sell</span>
+<span class="text-secondary font-label-sm text-label-sm bg-secondary/10 px-sm py-xs rounded-full uppercase tracking-wider">Tier 2</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface-variant">Active Discounts</h3>
+<p class="font-headline-lg text-headline-lg text-on-surface mt-xs">15.5% Off</p>
+</div>
+</div>
+<!-- Recent Order Status Bar -->
+<div class="bg-surface-container-lowest p-lg rounded-xl soft-shadow border border-outline-variant/10">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-headline-md text-headline-md">Recent Order Status</h2>
+<span class="font-label-md text-label-md text-primary hover:underline cursor-pointer">PO #88219-B</span>
+</div>
+<div class="relative pt-xs pb-md">
+<div class="flex mb-sm items-center justify-between">
+<div class="text-xs font-semibold py-1 px-2 uppercase rounded-full text-on-secondary-container bg-secondary-container">Processing</div>
+<div class="text-xs font-semibold py-1 px-2 uppercase rounded-full text-on-surface-variant bg-surface-container-high">Delivered</div>
+</div>
+<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-surface-container-high">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary transition-all duration-1000" style="width:65%"></div>
+</div>
+<div class="flex justify-between text-[10px] text-on-surface-variant uppercase tracking-tighter font-bold">
+<span>Order Placed</span>
+<span>Quality Check</span>
+<span class="text-primary">In Transit</span>
+<span>Arrival</span>
+</div>
+</div>
+</div>
+<!-- Action Required List -->
+<div class="space-y-md">
+<h2 class="font-headline-md text-headline-md px-xs">Action Required</h2>
+<div class="space-y-sm">
+<!-- Action Item 1 -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-md rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-error bg-error-container/20 p-sm rounded-full">description</span>
+<div>
+<h4 class="font-label-md text-label-md font-bold">Confirm Invoice #INV-2024-012</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Pending since 48 hours ago</p>
+</div>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-primary">arrow_forward</span>
+</div>
+<!-- Action Item 2 -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-md rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-tertiary bg-tertiary-container/20 p-sm rounded-full">inventory</span>
+<div>
+<h4 class="font-label-md text-label-md font-bold">Re-stock Request: Organic Cotton Liners</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Stock levels below 5% for regional hub</p>
+</div>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-primary">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Market Insights -->
+<aside class="lg:col-span-4 space-y-lg">
+<div class="bg-surface-container-lowest p-lg rounded-xl soft-shadow border border-outline-variant/10 h-full">
+<h2 class="font-headline-md text-headline-md mb-md">Market Insights</h2>
+<div class="mb-lg rounded-lg overflow-hidden relative group">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+<img class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A luxurious lifestyle photo of high-end wellness products arranged on a minimalist marble table with soft, afternoon sunlight casting long shadows. The products feature sophisticated terracotta and cream packaging, reflecting the GirlyPouch brand identity. The lighting is high-key and serene, evoking a feeling of premium quality and reliable care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDAD2F21V9-kTJTjXwh6fSiMeSvIOhdr9PXefZXoE10-ODz6CxfsqTc4SUaluuCbYVWamHslEXfvXUaey2KlcIoSEsws8n2kvLbF0vEYkmBbeAjkLx7sJFXfsyI3_r0J_508xfWamXdxmeRbgv51UJWRvHV_yWnOJ5EwLpLK9TGxZlocpQE7WklMe3yayDDXn-_l20skyBaj4rbymgh2lJhnnDS4me-XdsIO-WI1oMrNZzovcd5ZKg09PM3sxJyr5jrwvcDeA"/>
+<div class="absolute bottom-4 left-4 z-20 text-white">
+<p class="text-label-sm font-bold opacity-80 uppercase">Regional Trend</p>
+<h3 class="text-body-lg font-bold">Eco-Conscious Shift</h3>
+</div>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface-variant mb-md uppercase tracking-widest">Top Trending Products</h3>
+<div class="space-y-lg">
+<div class="flex gap-md items-center group cursor-pointer">
+<div class="w-16 h-16 bg-surface-container rounded-lg flex-shrink-0 flex items-center justify-center border border-outline-variant/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Minimalist, high-end packaging of a feminine care product. The packaging is a soft terracotta color with elegant, minimal white typography. The item is photographed in a bright studio environment with clean white backgrounds, embodying a modern fintech-meets-wellness aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKMqx3xsq8uxEnbUfHNcl5DRU_3eo_eYc6nEzwI_kKcK6oUrBJJZQj_XPyymwUcc36_tc2oVf1k0b0M_uzpOMDE6dR1z_4wiSG50vvzdOE4Ng6FFpR9H7mja7APPULFSvG8QnnG9OCyJ4M8KMzjPJQVgNTOQkUr-KNseyYKwyKQH5kz_mlxaPVCGZlF9l4E6PxG5SiOamJ23f_2hwBJoBTPBC24eAOWXYLRXjkV7J6gZdtuI0VlfOGBMoezXDCAzWK1EBlY40"/>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold group-hover:text-primary transition-colors">Premium Hemp Pads</p>
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-size: 16px;">trending_up</span>
+<span class="font-label-sm text-label-sm">24% Increase</span>
+</div>
+</div>
+</div>
+<div class="flex gap-md items-center group cursor-pointer">
+<div class="w-16 h-16 bg-surface-container rounded-lg flex-shrink-0 flex items-center justify-center border border-outline-variant/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, close-up shot of a sustainable feminine hygiene product box with refined branding and earth-toned colors. The box is textured and feels premium to the touch, set against a warm cream background that highlights its minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcJPemTpN3WR2xrSkGowhWBgBvfGrt_UOc9PxFEK-i1-kbqxhBikp0bN_YrMQ1LJSdjNiR5_hTsvwwQHpeFU2m4svBzHD7rsLI4ZZqkscIuj5b9iTyFIfShrFM1dncLzUlatkGwGzJj7i-5NAkcAEX75lKDcuDjlH68BX6TrC29fqrB8MzXjpBlc72q0mZ6j4WetILADrBzN5qeHHciv7udsPSzCaZfCOYvygUttKJ9nW3uc-3yZ8gp8O7opCoOlAh0_cD-5g"/>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold group-hover:text-primary transition-colors">Sensitive Relief Kit</p>
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-size: 16px;">trending_up</span>
+<span class="font-label-sm text-label-sm">18% Increase</span>
+</div>
+</div>
+</div>
+<div class="flex gap-md items-center group cursor-pointer">
+<div class="w-16 h-16 bg-surface-container rounded-lg flex-shrink-0 flex items-center justify-center border border-outline-variant/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Sophisticated wellness product containers arranged artistically on a light-colored wood surface. The packaging is minimal, using muted rose and charcoal accents, fitting the brand's luxury and high-end aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuTPSn6HYZWDVf4SOLvsFWwchF94xkB2FonJ0Jsf_NCjYzOSLjmvHY9GofldRHBAZYwoJQp2hCum3DHTQfNHueCTfHX_d1Agn1dBCleWgf3TSsq4pTe0g5GlepcU5uNFCY_KR0NbW0EVeQyLmQz0gUcPa6SP8-2zA3qrBpsQ7LGS3UxuDAgm-hXMQebo8Jn0xxV-0MOcP6gBOuU-Cynf1JPTf9GNqYE0HEY8aA3ElPu-_IKfDtSmaNc8Uzcz0SlCFnbTonYtg"/>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold group-hover:text-primary transition-colors">Daily Wellness Pouches</p>
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-size: 16px;">trending_up</span>
+<span class="font-label-sm text-label-sm">12% Increase</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-xl p-md rounded-xl bg-primary/5 border border-primary/20">
+<h4 class="font-label-md text-label-md text-primary font-bold mb-xs">Pro Insight</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Partners in the Northwest are currently seeing a 40% uptick in subscription-based orders over individual units. Consider updating your bulk stock profile.</p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full py-md mt-auto bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-7xl mx-auto">
+<div class="font-label-md text-label-md font-black text-on-surface mb-sm md:mb-0">© 2024 Luna Care B2B. All rights reserved.</div>
+<div class="flex gap-lg items-center">
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors opacity-90 hover:opacity-100" href="#">Terms of Sale</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors opacity-90 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors opacity-90 hover:opacity-100" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+<!-- Micro-interactions Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hover effect for KPI cards
+            const kpiCards = document.querySelectorAll('.soft-shadow');
+            kpiCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.classList.add('translate-y-[-4px]');
+                    card.style.transition = 'all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)';
+                    card.style.boxShadow = '0 20px 40px rgba(45, 55, 72, 0.08)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.classList.remove('translate-y-[-4px]');
+                    card.style.boxShadow = '0 10px 30px rgba(45, 55, 72, 0.05)';
+                });
+            });
+
+            // Smooth progress bar entry
+            setTimeout(() => {
+                const bar = document.querySelector('.bg-primary');
+                if (bar) bar.style.width = '65%';
+            }, 500);
+        });
+    </script>
+</body></html>

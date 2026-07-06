@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-brand-50 text-brand-dark font-sans selection:bg-brand-200;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-brand-dark tracking-tight font-semibold;
+  }
+}
+
+@layer components {
+  /* Premium Glassmorphic Card */
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-sm rounded-2xl;
+  }
+
+  /* Deep Glow Wine Card */
+  .glow-card {
+    @apply bg-brand-dark/95 border border-brand-800/30 shadow-xl rounded-2xl relative overflow-hidden;
+  }
+
+  /* Custom input wrapper */
+  .input-field {
+    @apply w-full px-4 py-3 bg-white/50 border border-brand-200 rounded-xl outline-none transition-all duration-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-200/50 text-brand-dark;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    @apply px-6 py-3 bg-[#9f402d] text-white font-medium rounded-xl transition-all duration-300 hover:bg-[#802918] active:scale-95 shadow-md shadow-[#9f402d]/10 hover:shadow-lg hover:shadow-[#9f402d]/20 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply px-6 py-3 bg-brand-100 text-brand-800 font-medium rounded-xl transition-all duration-300 hover:bg-brand-200 active:scale-95 border border-brand-200/50 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  /* Minimalist Outline Button */
+  .btn-outline {
+    @apply px-6 py-3 bg-transparent border border-brand-300 text-brand-800 font-medium rounded-xl transition-all duration-300 hover:bg-brand-50 active:scale-95;
+  }
+}
+
+/* Custom Webkit scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-brand-50;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-brand-200 rounded-full hover:bg-brand-300 transition-colors;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}

@@ -1,0 +1,315 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Dashboard | GirlyPouch</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pouch-card {
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .pouch-card:hover {
+            border-color: #9f402d;
+            transform: translateY(-4px);
+        }
+        .soft-shadow {
+            box-shadow: 0 10px 30px rgba(45, 55, 72, 0.05);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#5a0d02",
+                    "primary-container": "#e2725b",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#ddc0ba",
+                    "surface-dim": "#dbdad7",
+                    "secondary": "#5a6147",
+                    "primary": "#9f402d",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed-variant": "#424a31",
+                    "tertiary-fixed": "#ffd9e3",
+                    "tertiary-container": "#be8295",
+                    "secondary-fixed-dim": "#c2caaa",
+                    "inverse-primary": "#ffb4a5",
+                    "on-tertiary-fixed": "#340d1d",
+                    "primary-fixed-dim": "#ffb4a5",
+                    "primary-fixed": "#ffdad3",
+                    "tertiary": "#834f60",
+                    "on-error-container": "#93000a",
+                    "background": "#faf9f6",
+                    "surface-variant": "#e3e2e0",
+                    "surface-tint": "#9f402d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#3e0500",
+                    "secondary-fixed": "#dee6c4",
+                    "inverse-surface": "#2f312f",
+                    "on-tertiary-container": "#481d2e",
+                    "tertiary-fixed-dim": "#f6b4c9",
+                    "on-primary-fixed-variant": "#802918",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#faf9f6",
+                    "on-primary": "#ffffff",
+                    "surface": "#faf9f6",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#efeeeb",
+                    "secondary-container": "#dee6c4",
+                    "on-secondary-fixed": "#171e09",
+                    "on-surface-variant": "#56423e",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#683849",
+                    "outline": "#89726d",
+                    "surface-container-low": "#f4f3f1",
+                    "surface-container-high": "#e9e8e5",
+                    "inverse-on-surface": "#f2f1ee",
+                    "on-surface": "#1a1c1a",
+                    "on-secondary-container": "#60684c",
+                    "surface-container-highest": "#e3e2e0",
+                    "on-background": "#1a1c1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "lg": "48px",
+                    "margin-mobile": "20px",
+                    "xs": "4px",
+                    "sm": "12px",
+                    "xl": "80px",
+                    "margin-desktop": "64px",
+                    "md": "24px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-base max-w-screen-2xl mx-auto bg-surface dark:bg-surface-container-low shadow-sm transition-all duration-300 ease-in-out">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">GirlyPouch</div>
+<nav class="hidden md:flex items-center gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary hover:opacity-80 transition-opacity duration-200" href="#">Shop</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary hover:opacity-80 transition-opacity duration-200" href="#">About</a>
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed font-bold border-b-2 border-primary hover:opacity-80 transition-opacity duration-200" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary hover:opacity-80 transition-opacity duration-200" href="#">B2B</a>
+</nav>
+<div class="flex items-center gap-sm">
+<button class="bg-primary text-on-primary font-bold px-md py-sm rounded-lg hover:opacity-80 transition-all duration-300">Get Started</button>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer md:hidden" data-icon="menu">menu</span>
+</div>
+</header>
+<main class="pt-32 pb-xl px-margin-mobile md:px-margin-desktop max-w-screen-2xl mx-auto">
+<!-- Hero Section -->
+<section class="mb-xl">
+<div class="flex flex-col lg:flex-row gap-lg items-start">
+<div class="flex-1 space-y-sm">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest bg-primary/10 px-sm py-xs rounded-full">Member Dashboard</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">Welcome back, Elena.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">Your wellness journey is on track. We've curated this month's selection based on your previous preferences and cycle logs.</p>
+</div>
+<!-- Next Delivery Card -->
+<div class="w-full lg:w-96 bg-surface-container-lowest rounded-xl p-md soft-shadow border border-outline-variant/30 relative overflow-hidden group">
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-center mb-md">
+<span class="font-label-sm text-label-sm text-on-secondary-container bg-secondary-container px-sm py-xs rounded-full">Next Delivery</span>
+<span class="material-symbols-outlined text-primary" data-icon="local_shipping">local_shipping</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">October 14th</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">Standard Wellness Pouch</p>
+<div class="flex gap-sm">
+<button class="flex-1 bg-primary text-on-primary font-bold py-sm rounded-lg hover:shadow-lg transition-all text-label-md">Add to Box</button>
+<button class="flex-1 border border-outline text-on-surface font-bold py-sm rounded-lg hover:bg-surface-container-low transition-all text-label-md">Track</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Layout for Status and Insights -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-xl">
+<!-- Your Pouch Status (Progress) -->
+<div class="md:col-span-7 bg-surface-container-lowest rounded-xl p-lg soft-shadow border border-outline-variant/30">
+<div class="flex items-center justify-between mb-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Your Pouch Status</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">4 items added, 2 spaces remaining</p>
+</div>
+<span class="material-symbols-outlined text-tertiary text-4xl" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+</div>
+<div class="space-y-sm mb-lg">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="">Pouch Capacity</span>
+<span class="text-primary">66%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 66%;"></div>
+</div>
+</div>
+<div class="flex gap-sm overflow-x-auto pb-sm no-scrollbar">
+<div class="flex-shrink-0 w-16 h-16 bg-surface-container rounded-lg flex items-center justify-center border border-dashed border-outline/30">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="add">add</span>
+</div>
+<div class="flex-shrink-0 w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="coffee">coffee</span>
+</div>
+<div class="flex-shrink-0 w-16 h-16 bg-tertiary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" data-icon="medication">medication</span>
+</div>
+<div class="flex-shrink-0 w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="eco">eco</span>
+</div>
+</div>
+</div>
+<!-- Wellness Insights -->
+<div class="md:col-span-5 bg-tertiary-container text-on-tertiary-container rounded-xl p-lg soft-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-3xl mb-sm" data-icon="lightbulb">lightbulb</span>
+<h2 class="font-headline-md text-headline-md mb-sm">Luteal Phase Tip</h2>
+<p class="font-body-md text-body-md opacity-90 leading-relaxed mb-md">Focus on magnesium-rich foods like dark chocolate and spinach this week to help ease muscle tension and improve sleep quality.</p>
+</div>
+<a class="font-label-md text-label-md underline underline-offset-4 flex items-center gap-xs hover:opacity-80 transition-opacity" href="#">
+                    Read Wellness Blog
+                    <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<!-- Abstract pattern decoration -->
+<div class="absolute -bottom-10 -right-10 opacity-10">
+<span class="material-symbols-outlined text-[160px]" data-icon="spa">spa</span>
+</div>
+</div>
+</div>
+<!-- Recommended Products Grid -->
+<section class="mb-xl">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Recommended for Your Cycle</h2>
+<a class="font-label-md text-label-md text-primary flex items-center gap-xs" href="#">
+                    View all Shop
+                    <span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Product 1 -->
+<div class="pouch-card bg-surface-container-lowest rounded-xl overflow-hidden soft-shadow flex flex-col">
+<div class="h-64 bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="A professional studio product shot of organic cotton bamboo period pads in minimalist cream and terracotta packaging, softly lit on a warm wooden surface with a sprig of dried lavender in the corner, conveying high-end wellness and premium subscription quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxL2IJj1ghSYDcqbERXHbDAXmwnodzfACF_9-_tgHrzvmJS4aXGGUQ3Rc9ae9o79MUCv4aTKAJWcYO2OIt81t6ITApibHOy6d5xvw5hH24qrH9IaaTqvtH5NTKGSRRnmYpNEtyQGz1SmgfMWlpbGT6ALWU25vY4JLlMFpWa6CyeauTxWvDbHsDZbZdK94zjRJ00qmexVVx2vW97fy1sLybyQ10eoNENgDyzkeRWR-eepW_pM1J-JCRuI-zQrGAra4_B2PSjp8">
+<span class="absolute top-sm left-sm bg-white/90 backdrop-blur px-sm py-xs rounded font-label-sm text-label-sm text-on-surface-variant">Bestseller</span>
+</div>
+<div class="p-md flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-xs">
+<h3 class="font-headline-md text-headline-md text-sm">Ultra-Soft Day Pads</h3>
+<span class="text-primary font-bold">$12.00</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md flex-1">100% Organic Bamboo, 12pk.</p>
+<button class="w-full bg-secondary-container text-on-secondary-container font-bold py-sm rounded-lg hover:bg-secondary text-on-secondary transition-all flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+                            Quick Reorder
+                        </button>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="pouch-card bg-surface-container-lowest rounded-xl overflow-hidden soft-shadow flex flex-col">
+<div class="h-64 bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="Minimalist aesthetic photography of a ceramic jar containing loose leaf herbal wellness tea blends, featuring dried rose petals and ginger, set against a soft cream background with elegant morning shadows. The design is clean and focuses on natural, organic textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiv6aqjhc52lmSPRC2QkvnP_oC2FFeBsLUpWFGJc-fFklvnLQq9OMrhYoNbp7YTQ_5ZcIb7MRB5iBybB8tTd20Do6GFfeKgVfBPDXiSNyHkxtvJL3j4z1IkIvjLSAUEI7_yLliFrmXPJtUkIZovNnVC9y9OLM-cbSWgAqL5JqhZSe0LZV07Zlh7Yag1UZBNiZqmZA4J2PiaVIHbCEeKy2EsSOQkIxBONELJETSl1Yfzyy28p1OEQVqar_qrZgMBLSpy0edWR4">
+<span class="absolute top-sm left-sm bg-tertiary-fixed text-on-tertiary-fixed px-sm py-xs rounded font-label-sm text-label-sm">Cycle Support</span>
+</div>
+<div class="p-md flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-xs">
+<h3 class="font-headline-md text-headline-md text-sm">Moon Cycle Tea</h3>
+<span class="text-primary font-bold">$18.00</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md flex-1">Ginger, Raspberry Leaf &amp; Rose.</p>
+<button class="w-full bg-secondary-container text-on-secondary-container font-bold py-sm rounded-lg hover:bg-secondary text-on-secondary transition-all flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+                            Quick Reorder
+                        </button>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="pouch-card bg-surface-container-lowest rounded-xl overflow-hidden soft-shadow flex flex-col">
+<div class="h-64 bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="Elegant close-up shot of individual biodegradable period liners wrapped in sleek matte paper with subtle gold leaf accents, arranged artistically on a neutral linen fabric. Soft, directional light creates deep shadows and a luxurious, high-end skincare aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFkkpMN1vyKDkc5y5wNpxYLt-i_EDju520E8QVQtfQyFjqGIu-PDhvD8_Idctczs-FIw2WqvG3aWBURSqIZj9rzZOJhEbHviZ-AMCVdJN0E5l8C5O_QT4LD0K3SUjh5DfgU-RPeYgx_lb3RMXBEiz0iGRTLUOY-36qXreZtnPAF2JovQHJ7D5Gp11vWKjA-Ua9nVLeoKlbXx9SKQLn_vLMVznAHOMSIFrq9AMQZPPPmgAolXJ9B345YFIzVKE6WHsXZp4Xv2Y">
+</div>
+<div class="p-md flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-xs">
+<h3 class="font-headline-md text-headline-md text-sm">Featherweight Liners</h3>
+<span class="text-primary font-bold">$9.00</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md flex-1">Breathable cotton, 24pk.</p>
+<button class="w-full bg-secondary-container text-on-secondary-container font-bold py-sm rounded-lg hover:bg-secondary text-on-secondary transition-all flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+                            Quick Reorder
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-lg flex flex-col md:flex-row justify-between items-center gap-base bg-surface-container-lowest dark:bg-inverse-surface">
+<div class="flex flex-col md:flex-row items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">GirlyPouch</span>
+<span class="font-label-sm text-label-sm text-on-secondary-container dark:text-secondary-fixed-dim">© 2024 GirlyPouch. All rights reserved.</span>
+</div>
+<nav class="flex gap-md">
+<a class="font-label-sm text-label-sm text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary transition-colors" href="#">Contact Us</a>
+<a class="font-label-sm text-label-sm text-on-secondary-container dark:text-secondary-fixed-dim hover:text-primary transition-colors" href="#">Wholesale</a>
+</nav>
+</footer>
+<script>
+        // Micro-interactions for dashboard elements
+        document.querySelectorAll('.pouch-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Subtle lift already handled by CSS transition
+            });
+        });
+
+        // Simulating loading state for progress bar
+        window.addEventListener('DOMContentLoaded', () => {
+            const progress = document.querySelector('.h-full.bg-primary');
+            if (progress) {
+                progress.style.width = '0%';
+                setTimeout(() => {
+                    progress.style.width = '66%';
+                }, 300);
+            }
+        });
+    </script>
+
+
+</body></html>
