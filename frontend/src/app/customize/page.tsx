@@ -333,6 +333,15 @@ export default function CustomizePage() {
         kit: suggestedKit,
         mix: recommendedQty
       });
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('girlypouch_quiz_recommendation', JSON.stringify({
+          flow: quizFlow,
+          active: quizActive,
+          preference: quizPreference,
+          kitName: suggestedKit.name,
+          mix: recommendedQty
+        }));
+      }
       setQuizStep(4);
     }, 2700);
   };
@@ -562,17 +571,26 @@ export default function CustomizePage() {
                     </span>
                   </div>
 
-                  <div className="space-y-2">
-                    {components.map(comp => {
-                      const qty = quizRecommendation.mix[comp.id] || 0;
-                      if (qty <= 0) return null;
-                      return (
-                        <div key={comp.id} className="flex justify-between items-center text-xs">
-                          <span className="font-semibold text-brand-dark/70">{comp.name}</span>
-                          <span className="font-bold text-brand-dark">x{qty} items</span>
-                        </div>
-                      );
-                    })}
+                  {/* Blurred Item List & Teaser Lock Badge Overlay */}
+                  <div className="space-y-2 relative">
+                    <div className="space-y-2 blur-[5px] select-none pointer-events-none">
+                      {components.map(comp => {
+                        const qty = quizRecommendation.mix[comp.id] || 0;
+                        if (qty <= 0) return null;
+                        return (
+                          <div key={comp.id} className="flex justify-between items-center text-xs">
+                            <span className="font-semibold text-brand-dark/70">{comp.name}</span>
+                            <span className="font-bold text-brand-dark">x{qty} items</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center bg-transparent">
+                      <span className="bg-[#9f402d] text-white text-[9px] font-extrabold uppercase tracking-widest px-3 py-1.5 rounded-full flex items-center gap-1 shadow-md">
+                        <span className="material-symbols-outlined text-[10px]">lock</span>
+                        Register to Unlock Recipe
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -895,6 +913,7 @@ export default function CustomizePage() {
                       </span>
                     </div>
 
+                    {/* Non-blurred Quantities list for Logged-In Members */}
                     <div className="space-y-2">
                       {components.map(comp => {
                         const qty = quizRecommendation.mix[comp.id] || 0;
@@ -1084,7 +1103,7 @@ export default function CustomizePage() {
                     {kit.max_components} Pads
                   </span>
                 </div>
-                <p className="text-xs text-brand-dark/50 mb-4">{kit.description}</p>
+                <p className="text-xs text-[#56423e] mb-4">{kit.description}</p>
                 <div className="text-lg font-bold text-[#9f402d]">${parseFloat(kit.price).toFixed(2)}</div>
               </button>
             );
@@ -1105,7 +1124,7 @@ export default function CustomizePage() {
             {/* Capacity Meter */}
             <div className="mb-6">
               <div className="flex justify-between items-end mb-2">
-                <span className="text-xs text-brand-dark/50 uppercase tracking-widest font-semibold">Filled Capacity</span>
+                <span className="text-xs text-[#56423e] uppercase tracking-widest font-semibold">Filled Capacity</span>
                 <span className="text-lg font-bold text-[#9f402d]">
                   {totalSelected}/{selectedKit?.max_components || 0}
                 </span>
@@ -1130,7 +1149,7 @@ export default function CustomizePage() {
 
             {/* Selected items review */}
             <div className="border-t border-brand-100 py-6 min-h-[120px]">
-              <h4 className="text-xs uppercase text-brand-dark/40 tracking-wider font-semibold mb-3">Pouch Contents</h4>
+              <h4 className="text-xs uppercase text-[#56423e] tracking-wider font-semibold mb-3">Pouch Contents</h4>
               {totalSelected === 0 ? (
                 <div className="text-center py-6 border border-dashed border-brand-200 rounded-xl bg-brand-50/50">
                   <span className="material-symbols-outlined text-brand-200 text-3xl">add_circle</span>
@@ -1155,7 +1174,7 @@ export default function CustomizePage() {
             {/* Flat Price summary and Submit */}
             <div className="border-t border-brand-100 pt-6">
               <div className="flex justify-between items-center mb-6">
-                <span className="text-sm text-brand-dark/50">Monthly Total</span>
+                <span className="text-sm text-[#56423e]">Monthly Total</span>
                 <span className="text-2xl font-bold text-brand-dark">
                   ${selectedKit ? parseFloat(selectedKit.price).toFixed(2) : '0.00'}
                 </span>
@@ -1198,17 +1217,17 @@ export default function CustomizePage() {
               if (comp.component_type === 'gym_pad') {
                 desc = "Ultra-thin, flexible wings designed for activewear and zero-feel support during sports.";
                 badge = "Gym Fit";
-                badgeBg = "bg-secondary/15 text-secondary";
+                badgeBg = "bg-[#dee6c4] text-[#802918]";
                 bgImage = "/gym_pad_texture.png";
               } else if (comp.component_type === 'night_pad') {
                 desc = "Extended silhouette shape and leak-lock absorption for full 12-hour protection.";
                 badge = "Overnight";
-                badgeBg = "bg-tertiary/15 text-tertiary";
+                badgeBg = "bg-[#ffdad3] text-[#802918]";
                 bgImage = "/night_pad_comfort.png";
               } else if (comp.component_type === 'panty_liner') {
                 desc = "Featherlight liners, perfect for daily wear, clean refreshes, and cycle beginning/ends.";
                 badge = "Daily wear";
-                badgeBg = "bg-brand-300/35 text-brand-800";
+                badgeBg = "bg-[#faf9f6] text-[#802918] border border-[#ddc0ba]/40";
               }
 
               return (
@@ -1231,7 +1250,7 @@ export default function CustomizePage() {
                   <div className="p-5 flex-grow flex flex-col justify-between">
                     <div>
                       <h4 className="font-bold text-brand-dark text-lg mb-1">{comp.name}</h4>
-                      <p className="text-xs text-brand-dark/60 leading-relaxed mb-4">{desc}</p>
+                      <p className="text-xs text-[#56423e] leading-relaxed mb-4">{desc}</p>
                     </div>
 
                     <div className="flex items-center justify-between pt-4 border-t border-brand-50">

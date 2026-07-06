@@ -6,6 +6,16 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 
+interface KitProduct {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  price: string;
+  max_components: number;
+  is_subscription_only: boolean;
+}
+
 interface SubscriptionItem {
   id: number;
   pad_component: {
@@ -97,7 +107,15 @@ export default function AccountPage() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [wholesaleInvoices, setWholesaleInvoices] = useState<WholesaleInvoice[]>([]);
   const [componentsCatalog, setComponentsCatalog] = useState<any[]>([]);
+  const [kits, setKits] = useState<KitProduct[]>([]);
   const [dashboardLoading, setDashboardLoading] = useState(false);
+  const [savedQuizRec, setSavedQuizRec] = useState<{
+    flow: string;
+    active: string;
+    preference: string;
+    kitName: string;
+    mix: Record<string, number>;
+  } | null>(null);
 
   // B2B Wholesale Order Creator state
   const [wholesaleQuantities, setWholesaleQuantities] = useState<Record<number, number>>({});
@@ -174,6 +192,20 @@ export default function AccountPage() {
     }
   };
 
+  // Load saved quiz recommendation from localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('girlypouch_quiz_recommendation');
+      if (saved) {
+        try {
+          setSavedQuizRec(JSON.parse(saved));
+        } catch (e) {
+          console.error('Failed to parse saved quiz rec:', e);
+        }
+      }
+    }
+  }, []);
+
   // Load Dashboard Data if authenticated
   useEffect(() => {
     if (token && user) {
@@ -184,14 +216,17 @@ export default function AccountPage() {
   const loadDashboardData = async () => {
     try {
       setDashboardLoading(true);
+      const [catalog, loadedKits] = await Promise.all([
+        api.products.getComponents(),
+        api.products.getKits()
+      ]);
+      setComponentsCatalog(catalog);
+      setKits(loadedKits);
+
       if (user?.is_b2b) {
         // B2B view
-        const [invoices, catalog] = await Promise.all([
-          api.orders.listWholesaleInvoices(),
-          api.products.getComponents()
-        ]);
+        const invoices = await api.orders.listWholesaleInvoices();
         setWholesaleInvoices(invoices);
-        setComponentsCatalog(catalog);
         setWholesaleShipping(user.shipping_address || '');
         
         // Init wholesale quantities dynamically based on database catalog
@@ -789,6 +824,75 @@ export default function AccountPage() {
       {/* D2C CUSTOMER VIEW */}
       {dashboardTab === 'dashboard' && !user.is_b2b && (
         <div className="space-y-12">
+          {/* Saved Wellness Profile Card */}
+          {savedQuizRec && (
+            <div className="bg-white p-6 rounded-2xl border border-brand-200/50 shadow-sm relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#ffdad3]/15 rounded-full blur-2xl pointer-events-none"></div>
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-[#9f402d] text-2xl">spa</span>
+                    <h3 className="text-lg font-bold font-display text-brand-dark">Your Wellness Profile Recommendation</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2 text-[9px] font-extrabold uppercase tracking-wider">
+                    <span className="bg-indigo-50 border border-indigo-200 text-indigo-700 px-2.5 py-1 rounded-full">
+                      Flow: {savedQuizRec.flow}
+                    </span>
+                    <span className="bg-emerald-50 border border-emerald-200 text-emerald-700 px-2.5 py-1 rounded-full">
+                      Movement: {savedQuizRec.active}
+                    </span>
+                    <span className="bg-brand-50 border border-brand-200 text-[#9f402d] px-2.5 py-1 rounded-full">
+                      Preference: {savedQuizRec.preference.replace('_', ' ')}
+                    </span>
+                  </div>
+                  <p className="text-xs text-[#56423e] leading-relaxed font-semibold">
+                    Recommended Package: <strong className="text-brand-dark">{savedQuizRec.kitName}</strong>
+                  </p>
+                </div>
+
+                <div className="flex gap-3 items-center">
+                  <Link 
+                    href="/customize?quiz=true"
+                    className="px-4 py-2 border border-[#ddc0ba] text-brand-dark/70 hover:text-brand-dark font-bold text-xs uppercase tracking-wider rounded-xl transition-colors bg-white hover:bg-brand-50"
+                  >
+                    Retake Quiz
+                  </Link>
+                  {subscriptions.length === 0 && (
+                    <button
+                      onClick={() => {
+                        if (typeof window !== 'undefined') {
+                          const matchedKit = kits.find(k => k.name === savedQuizRec.kitName) || kits[0];
+                          if (matchedKit) {
+                            sessionStorage.setItem('pending_customize_kit', JSON.stringify(matchedKit));
+                            sessionStorage.setItem('pending_customize_items', JSON.stringify(savedQuizRec.mix));
+                            router.push('/customize');
+                          }
+                        }
+                      }}
+                      className="px-5 py-2 bg-[#9f402d] hover:bg-[#802918] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md shadow-[#9f402d]/10"
+                    >
+                      Apply & Subscribe
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Breakdown detail panel */}
+              <div className="mt-4 pt-4 border-t border-brand-100 grid grid-cols-2 sm:grid-cols-4 gap-3 text-[10px] font-semibold text-brand-dark/70">
+                {componentsCatalog.map((comp) => {
+                  const qty = savedQuizRec.mix[comp.id] || 0;
+                  if (qty <= 0) return null;
+                  return (
+                    <div key={comp.id} className="bg-brand-50/50 p-2.5 rounded-xl border border-brand-100 flex items-center justify-between">
+                      <span className="truncate">{comp.name}:</span>
+                      <span className="font-bold text-[#9f402d] bg-white px-2 py-0.5 rounded border border-brand-200">x{qty}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {subscriptions.length === 0 ? (
             <div className="bg-white p-12 rounded-2xl border border-brand-200/50 text-center space-y-4 max-w-2xl mx-auto shadow-sm">
               <span className="material-symbols-outlined text-brand-200 text-6xl">shopping_basket</span>
